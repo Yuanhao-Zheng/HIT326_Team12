@@ -1,3 +1,7 @@
+<?php
+include "../admin/includes/db.php";
+?>
+
 <!-- header -->
 <?php
 include "includes/header.php";
@@ -46,15 +50,6 @@ include "includes/header.php";
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
 
 
 

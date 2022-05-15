@@ -1,4 +1,5 @@
-<?php
+<?php 
+session_start();
 include('includes/header.php');
 ?>
 
@@ -10,6 +11,8 @@ include('includes/navbar.php');
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-5">
+            <?php include('message.php'); ?>
+
                 <div class="card">
                     <div class="card-header">
                         <h4>Login</h4>
