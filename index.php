@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include('includes/header.php');
 ?>
 
@@ -10,6 +11,9 @@ include('includes/navbar.php');
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+
+            <?php include('message.php'); ?>
+
                 <h3>Hello</h3>
             </div>
         </div>
