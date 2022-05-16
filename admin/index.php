@@ -1,5 +1,5 @@
 <?php
-include "../admin/includes/db.php";
+include "authentication.php";
 ?>
 
 <!-- header -->

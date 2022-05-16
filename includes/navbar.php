@@ -13,31 +13,43 @@
                     <a class="nav-link" href="#">Link</a>
                 </li>
 
-                <?php if(isset($_SESSION['auth_user'])) : ?>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                       <?= $_SESSION['auth_user']['user_name']; ?> 
-                    Dropdown
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">My Profile</a></li>
-                        <li><a class="dropdown-item" href="logout.php">Logout<a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-
-                <?php else : ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.php">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="register.php">Register</a>
-                </li>
-                <?php endif; ?>
+                <?php if (isset($_SESSION['auth_user'])) : ?>
+                    <!-- <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <?= $_SESSION['auth_user']['user_name']; ?>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">My Profile</a></li>
+                            <li>
+                                <form action="allcode.php" method="POST">
+                                    <button type="submit" class="dropdown-item">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><?= $_SESSION['auth_user']['user_name']; ?>
+                        </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">My Profile</a>
+                    </li>
+                    <li>
+                        <form action="allcode.php" method="POST">
+                            <button type="submit" name="logout_btn" class="nav-link">Logout</button>
+                        </form>
+                    </li>
             </ul>
+            </li>
+
+        <?php else : ?>
+            <li class="nav-item">
+                <a class="nav-link" href="login.php">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="register.php">Register</a>
+            </li>
+        <?php endif; ?>
+        </ul>
 
         </div>
     </div>
