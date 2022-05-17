@@ -21,8 +21,8 @@
                 </a>
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="category-add.php">Add Unit</a>
-                        <a class="nav-link" href="category-view.php">View Units</a>
+                        <a class="nav-link" href="unit-add.php">Add Unit</a>
+                        <a class="nav-link" href="unit-view.php">View Units</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">

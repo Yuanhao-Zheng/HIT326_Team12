@@ -21,12 +21,12 @@ if(isset($_POST['unit_add']))
     if($query_run)
     {
         $_SESSION['message'] = "Unit Added Successfully";
-        header('Location: register-add.php');
+        header('Location: unit-add.php');
         exit(0);
     }else
     {
         $_SESSION['message'] = "Something went wrong";
-        header('Location: register-add.php');
+        header('Location: unit-add.php');
         exit(0);
     }
 
