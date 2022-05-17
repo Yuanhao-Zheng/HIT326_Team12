@@ -4,6 +4,29 @@ include "authentication.php";
 
 <?php
 
+if(isset($_POST['user_delete']))
+{
+    $user_id = $_POST['user_delete'];
+
+    $query = "DELETE FROM users WHERE user_id='$user_id'";
+
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "Admin/User Deleted Successfully";
+        header('Location: view-register.php');
+        exit(0);
+    }else
+    {
+        $_SESSION['message'] = "Something went wrong";
+        header('Location: view-register.php');
+        exit(0);
+    }
+
+
+}
+
 if(isset($_POST['add_user']))
 {
     $user_firstname = $_POST['user_firstname'];

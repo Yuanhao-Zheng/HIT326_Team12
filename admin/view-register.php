@@ -25,7 +25,8 @@ include "includes/header.php";
             <div class="card">
                 <div class="card-header">
                     <h4>Registered User
-                    <a href="register-add.php" class="btn btn-primary float-end">Add User</a></h4>
+                        <a href="register-add.php" class="btn btn-primary float-end">Add User</a>
+                    </h4>
                 </div>
                 <div class="card-body">
 
@@ -65,7 +66,12 @@ include "includes/header.php";
                                             ?>
                                         </td>
                                         <td><a href="register-edit.php?user_id=<?= $row['user_id']; ?>" class="btn btn-secondary">Edit</td>
-                                        <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                        <td>
+                                            <form action="code.php" method="POST">
+
+                                                <button type="submit" name="user_delete" value="<?= $row['user_id']; ?>" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 <?php
                                 }
