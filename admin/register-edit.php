@@ -36,7 +36,7 @@ include "includes/header.php";
 
 
                                 <form action="code.php" method="POST">
-                                    <input type="text" name="user_id" value="<?=$user['user_id']; ?>">
+                                    <input type="hidden" name="user_id" value="<?=$user['user_id']; ?>">
 
                                     <div class="row">
                                         <div class="col-md-12 mb-3">

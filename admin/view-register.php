@@ -17,10 +17,15 @@ include "includes/header.php";
     <div class="row">
 
         <div class="col-md-12">
+
+
             <?php include('message.php'); ?>
+
+
             <div class="card">
                 <div class="card-header">
-                    <h4>Registered User</h4>
+                    <h4>Registered User
+                    <a href="register-add.php" class="btn btn-primary float-end">Add User</a></h4>
                 </div>
                 <div class="card-body">
 
