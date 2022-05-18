@@ -25,7 +25,7 @@ include "includes/header.php";
                     if (isset($_GET['unit_id'])) 
                     {
                         $unit_id = $_GET['unit_id'];
-                        $unit_edit = "SELECT * FROM units WHERE unit_id='$unit_id' ";
+                        $unit_edit = "SELECT * FROM units WHERE unit_id='$unit_id' LIMIT 1";
                         $unit_run = mysqli_query($connection, $unit_edit);
 
                         if (mysqli_num_rows($unit_run) > 0) {

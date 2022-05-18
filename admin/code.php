@@ -4,6 +4,29 @@ include "authentication.php";
 
 <?php
 
+if(isset($_POST['unit_delete']))
+{
+    $unit_id = $_POST['unit_delete'];
+
+    $query = "DELETE FROM units WHERE unit_id='$unit_id'";
+
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "Unit Deleted Successfully";
+        header('Location: unit-view.php');
+        exit(0);
+    }else
+    {
+        $_SESSION['message'] = "Something went wrong";
+        header('Location: unit-view.php');
+        exit(0);
+    }
+
+
+}
+
 if(isset($_POST['unit_update']))
 {
     $unit_id = $_POST['unit_id'];
