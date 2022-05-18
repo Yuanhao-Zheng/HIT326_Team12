@@ -1,5 +1,5 @@
 <?php
-session_start();
+include('includes/header.php');
 
 if(isset($_SESSION['auth']))
 {
@@ -14,7 +14,6 @@ if(isset($_SESSION['auth']))
 
 
 
-include('includes/header.php');
 ?>
 
 <?php

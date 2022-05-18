@@ -14,7 +14,7 @@ include('includes/navbar.php');
 
             <?php include('message.php'); ?>
 
-                <h3>Hello</h3>
+                <h3>BO</h3>
             </div>
         </div>
     </div>

@@ -1,3 +1,22 @@
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-9">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" href="#">Navbar</a>
@@ -5,10 +24,26 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
+                <?php
+                $navbarUnit = "SELECT * FROM units WHERE navbar_status='1' ";
+                $navbarUnit_run = mysqli_query($connection, $navbarUnit);
+
+                if (mysqli_num_rows($navbarUnit_run) > 0) {
+                    foreach ($navbarUnit_run as $navItems) {
+                ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="unit.php?title=<?= $navItems['unit_name'] ?>"><?= $navItems['unit_code']; ?></a>
+                        </li>
+                <?php
+                    }
+                }
+
+                ?>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                 </li>
