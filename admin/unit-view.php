@@ -61,7 +61,7 @@ include "includes/header.php";
                                             <td>
                                                 <?= $item['status'] == '1' ? 'Hidden':'Visible' ?>
                                             </td>
-                                            <td><a href="" class="btn btn-info">Edit</td>
+                                            <td><a href="unit-edit.php?unit_id=<?= $item['unit_id'] ?>" class="btn btn-info">Edit</td>
                                             <td><a href="" class="btn btn-danger">Delete</td>
                                         </tr>
                                     <?php

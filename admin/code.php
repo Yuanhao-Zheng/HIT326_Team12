@@ -4,6 +4,36 @@ include "authentication.php";
 
 <?php
 
+if(isset($_POST['unit_update']))
+{
+    $unit_id = $_POST['unit_id'];
+    $unit_code = $_POST['unit_code'];
+    $unit_name = $_POST['unit_name'];
+    $unit_year = $_POST['unit_year'];
+    $unit_semester = $_POST['unit_semester'] == true ? '1':'0'; //can add semester 1,2 and summer
+    $navbar_status = $_POST['navbar_status'] == true ? '1':'0';
+    $status = $_POST['status'] == true ? '1':'0';
+
+    $query = "UPDATE units SET unit_code='$unit_code', unit_name='$unit_name', unit_year='$unit_year', unit_semester='$unit_semester', navbar_status='$navbar_status', status='$status'
+    WHERE unit_id='$unit_id' ";
+
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "Unit Updated Successfully";
+        header('Location: unit-edit.php?unit_id='.$unit_id);
+        exit(0);
+    }else
+    {
+        $_SESSION['message'] = "Something went wrong";
+        header('Location: unit-edit.php?unit_id='.$unit_id);
+        exit(0);
+    }
+
+}
+
+
 if(isset($_POST['unit_add']))
 {
     $unit_code = $_POST['unit_code'];
