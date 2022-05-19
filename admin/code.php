@@ -4,6 +4,32 @@ include "authentication.php";
 
 <?php
 
+if(isset($_POST['group_add']))
+{
+    $assignment_id = $_POST['assignment_id'];
+    $group_number = $_POST['group_number'];
+    $navbar_status = $_POST['navbar_status'] == true ? '1':'0';
+    $status = $_POST['status'] == true ? '1':'0';
+
+    $query = "INSERT INTO groups (assignment_id,group_number,navbar_status,status) VALUES 
+    ('$assignment_id','$group_number','$navbar_status','$status')";
+
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "Group Added Successfully";
+        header('Location: group-add.php');
+        exit(0);
+    }else
+    {
+        $_SESSION['message'] = "Something went wrong";
+        header('Location: group-add.php');
+        exit(0);
+    }
+}
+
+
 if(isset($_POST['assignment_delete']))
 {
     $assignment_id = $_POST['assignment_delete'];
