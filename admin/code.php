@@ -4,6 +4,33 @@ include "authentication.php";
 
 <?php
 
+if(isset($_POST['assignment_add']))
+{
+    $unit_id = $_POST['unit_id'];
+    $assignment_title = $_POST['assignment_title'];
+    $navbar_status = $_POST['navbar_status'] == true ? '1':'0';
+    $status = $_POST['status'] == true ? '1':'0';
+
+    $query = "INSERT INTO assignments (unit_id,assignment_title,navbar_status,status) VALUES 
+    ('$unit_id','$assignment_title','$navbar_status','$status')";
+
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "assignment Added Successfully";
+        header('Location: assignment-add.php');
+        exit(0);
+    }else
+    {
+        $_SESSION['message'] = "Something went wrong";
+        header('Location: assignment-add.php');
+        exit(0);
+    }
+}
+
+
+
 if(isset($_POST['unit_delete']))
 {
     $unit_id = $_POST['unit_delete'];
@@ -74,12 +101,12 @@ if(isset($_POST['unit_add']))
     if($query_run)
     {
         $_SESSION['message'] = "Unit Added Successfully";
-        header('Location: unit-add.php');
+        header('Location: unit-view.php');
         exit(0);
     }else
     {
         $_SESSION['message'] = "Something went wrong";
-        header('Location: unit-add.php');
+        header('Location: unit-view.php');
         exit(0);
     }
 
