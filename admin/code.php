@@ -4,6 +4,56 @@ include "authentication.php";
 
 <?php
 
+if(isset($_POST['student_delete']))
+{
+    $student_id = $_POST['student_delete'];
+
+    $query = "DELETE FROM students WHERE student_id='$student_id'";
+
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "Student Deleted Successfully";
+        header('Location: student-view.php');
+        exit(0);
+    }else
+    {
+        $_SESSION['message'] = "Something went wrong";
+        header('Location: student-view.php');
+        exit(0);
+    }
+
+
+}
+
+if(isset($_POST['student_update']))
+{
+    $student_id = $_POST['student_id'];
+    $student_number = $_POST['student_number'];
+    $student_firstname = $_POST['student_firstname'];
+    $student_lastname = $_POST['student_lastname'];
+    $status = $_POST['status'] == true ? '1':'0';
+
+    $query = "UPDATE students SET student_number='$student_number', student_firstname='$student_firstname', student_lastname='$student_lastname', status='$status'
+    WHERE student_id='$student_id' ";
+
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "Student Updated Successfully";
+        header('Location: student-edit.php?student_id='.$student_id);
+        exit(0);
+    }else
+    {
+        $_SESSION['message'] = "Something went wrong";
+        header('Location: student-edit.php?student_id='.$student_id);
+        exit(0);
+    }
+
+}
+
 if(isset($_POST['student_add']))
 {
     $student_number = $_POST['student_number'];
