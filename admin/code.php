@@ -4,6 +4,33 @@ include "authentication.php";
 
 <?php
 
+if(isset($_POST['assignment_update']))
+{
+    $assignment_id = $_POST['assignment_id'];
+    // $unit_id = $_POST['unit_id'];
+    $assignment_title = $_POST['assignment_title'];
+    $navbar_status = $_POST['navbar_status'] == true ? '1':'0';
+    $status = $_POST['status'] == true ? '1':'0';
+
+    $query = "UPDATE assignments SET assignment_title='$assignment_title',navbar_status='$navbar_status',status='$status' 
+    WHERE assignment_id='$assignment_id'";
+
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "Assignment Updated Successfully";
+        header('Location: assignment-edit.php?assignment_id='.$assignment_id);
+        exit(0);
+    }else
+    {
+        $_SESSION['message'] = "Something went wrong";
+        header('Location: assignment-edit.php?assignment_id='.$assignment_id);
+        exit(0);
+    }
+}
+
+
 if(isset($_POST['assignment_add']))
 {
     $unit_id = $_POST['unit_id'];

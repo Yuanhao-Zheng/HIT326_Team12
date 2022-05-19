@@ -44,7 +44,14 @@ include "includes/header.php";
                                 ?>
                                         <tr>
                                             <td><?= $item['assignment_id'] ?></td>
-                                            <td><?= $item['unit_id'] ?></td>
+                                            <!-- <td><?= $item['unit_id'] ?></td> -->
+                                            <td><?php 
+                                        $query = mysqli_query($connection, "SELECT unit_code From units WHERE unit_id='{$item['unit_id']}' ");
+                                        while ($row = mysqli_fetch_array($query)){
+                                        $unit_code = $row['unit_code'] ;
+                                        echo $unit_code;
+                                        }
+                                        ?></td> 
                                             <td><?= $item['assignment_title'] ?></td>
                                             <td>
                                                 <?= $item['status'] == '1' ? 'Hidden':'Visible' ?>
