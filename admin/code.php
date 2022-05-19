@@ -4,6 +4,30 @@ include "authentication.php";
 
 <?php
 
+if(isset($_POST['assignment_delete']))
+{
+    $assignment_id = $_POST['assignment_delete'];
+
+    $query = "DELETE FROM assignments WHERE assignments.assignment_id='$assignment_id'";
+
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "Assignment Deleted Successfully";
+        header('Location: assignment-view.php');
+        exit(0);
+    }else
+    {
+        $_SESSION['message'] = "Something went wrong";
+        header('Location: Assignment-view.php');
+        exit(0);
+    }
+
+
+}
+
+
 if(isset($_POST['assignment_update']))
 {
     $assignment_id = $_POST['assignment_id'];
