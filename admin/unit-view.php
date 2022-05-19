@@ -59,7 +59,7 @@ include "includes/header.php";
                                                 ?>
                                             </td>
                                             <td>
-                                                <?= $item['status'] == '1' ? 'Hidden':'Visible' ?>
+                                                <?= $item['status'] == '1' ? 'Visible':'Hidden' ?>
                                             </td>
                                             <td><a href="unit-edit.php?unit_id=<?= $item['unit_id'] ?>" class="btn btn-info">Edit</td>
                                             <td>

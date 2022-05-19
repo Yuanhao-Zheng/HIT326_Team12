@@ -54,7 +54,7 @@ include "includes/header.php";
                                         ?></td> 
                                             <td><?= $item['assignment_title'] ?></td>
                                             <td>
-                                                <?= $item['status'] == '1' ? 'Hidden':'Visible' ?>
+                                                <?= $item['status'] == '1' ? 'Visible':'Hidden' ?>
                                             </td>
                                             <td><a href="assignment-edit.php?assignment_id=<?= $item['assignment_id'] ?>" class="btn btn-info">Edit</td>
                                             <td>

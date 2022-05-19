@@ -54,7 +54,7 @@ include "includes/header.php";
                                         ?></td> 
                                             <td><?= $item['group_number'] ?></td>
                                             <td>
-                                                <?= $item['status'] == '1' ? 'Hidden':'Visible' ?>
+                                                <?= $item['status'] == '1' ? 'Visible':'Hidden' ?>
                                             </td>
                                             <td><a href="group-edit.php?group_id=<?= $item['group_id'] ?>" class="btn btn-info">Edit</td>
                                             <td>
