@@ -4,6 +4,33 @@ include "authentication.php";
 
 <?php
 
+if(isset($_POST['student_add']))
+{
+    $student_number = $_POST['student_number'];
+    $student_firstname = $_POST['student_firstname'];
+    $student_lastname = $_POST['student_lastname'];
+    $status = $_POST['status'] == true ? '1':'0';
+
+    $query = "INSERT INTO students (student_number,student_firstname,student_lastname,status) VALUES 
+    ('$student_number','$student_firstname','$student_lastname','$status')";
+
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "Student Added Successfully";
+        header('Location: student-view.php');
+        exit(0);
+    }else
+    {
+        $_SESSION['message'] = "Something went wrong";
+        header('Location: student-view.php');
+        exit(0);
+    }
+
+}
+
+
 if(isset($_POST['group_delete']))
 {
     $group_id = $_POST['group_delete'];
