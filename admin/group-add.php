@@ -26,7 +26,7 @@ include "includes/header.php";
                         <div class="row">
                         <div class="col-md-12 mb-3">
                                 <label for="">Assignment Title</label>
-                                <select name="assignment_id" required class="form-control">
+                                <select name="assignment_id" required class="form-select">
                                     <option value="pick">--Select Assignment-</option>
                                     <?php 
                                         $fetch_assign_title = mysqli_query($connection, "SELECT assignment_id, assignment_title From assignments");
@@ -40,7 +40,7 @@ include "includes/header.php";
 
                             <div class="col-md-12 mb-3">
                                 <label for="">Group Number</label>
-                                <select name="group_number" required class="form-control">
+                                <select name="group_number" required class="form-select">
                                     <option value="">--Select Group--</option>
                                     <option value="1">Group 1</option>
                                     <option value="2">Group 2</option>

@@ -41,8 +41,8 @@ include "includes/header.php";
 
                             <div class="col-md-12 mb-3">
                                 <label for="">Unit Semester</label>
-                                <select name="unit_semester" required class="form-control">
-                                    <option value="">--Select Role--</option>
+                                <select name="unit_semester" required class="form-select">
+                                    <option value="">--Select Semester--</option>
                                     <option value="1">Semester 1</option>
                                     <option value="0">Semester 2</option>
                                 </select>

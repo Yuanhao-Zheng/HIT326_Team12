@@ -4,6 +4,56 @@ include "authentication.php";
 
 <?php
 
+if(isset($_POST['group_delete']))
+{
+    $group_id = $_POST['group_delete'];
+
+    $query = "DELETE FROM groups WHERE groups.group_id='$group_id'";
+
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "Group Deleted Successfully";
+        header('Location: group-view.php');
+        exit(0);
+    }else
+    {
+        $_SESSION['message'] = "Something went wrong";
+        header('Location: group-view.php');
+        exit(0);
+    }
+
+
+}
+
+if(isset($_POST['group_update']))
+{
+    $group_id = $_POST['group_id'];
+    // $unit_id = $_POST['unit_id'];
+    $group_number = $_POST['group_number'];
+    $navbar_status = $_POST['navbar_status'] == true ? '1':'0';
+    $status = $_POST['status'] == true ? '1':'0';
+
+    $query = "UPDATE groups SET group_number='$group_number',navbar_status='$navbar_status',status='$status' 
+    WHERE group_id='$group_id'";
+
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "Group Updated Successfully";
+        header('Location: group-edit.php?group_id='.$group_id);
+        exit(0);
+    }else
+    {
+        $_SESSION['message'] = "Something went wrong";
+        header('Location: group-edit.php?group_id='.$group_id);
+        exit(0);
+    }
+}
+
+
 if(isset($_POST['group_add']))
 {
     $assignment_id = $_POST['assignment_id'];

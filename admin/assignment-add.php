@@ -26,7 +26,7 @@ include "includes/header.php";
                         <div class="row">
                         <div class="col-md-12 mb-3">
                                 <label for="">Unit Code</label>
-                                <select name="unit_id" required class="form-control">
+                                <select name="unit_id" required class="form-select">
                                     <option value="pick">--Select Unit-</option>
                                     <?php 
                                         $fetch_unitCode = mysqli_query($connection, "SELECT unit_id, unit_code From units");
