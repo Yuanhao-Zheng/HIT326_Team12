@@ -27,7 +27,6 @@ include "includes/header.php";
                             <thead>
                                 <tr>
                                     <th>Student Id</th>
-                                    <th>Student Number</th>
                                     <th>Student FirstName</th>
                                     <th>Student LastName</th>
                                     <th>Status</th>
@@ -45,7 +44,6 @@ include "includes/header.php";
                                 ?>
                                         <tr>
                                             <td><?= $item['student_id'] ?></td>
-                                            <td><?= $item['student_number'] ?></td>
                                             <td><?= $item['student_firstname'] ?></td>
                                             <td><?= $item['student_lastname'] ?></td>
                                             <td>

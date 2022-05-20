@@ -4,6 +4,33 @@ include "authentication.php";
 
 <?php
 
+if(isset($_POST['review_add']))
+{
+    $student_id = $_POST['student_id'];
+    $group_id = $_POST['group_id'];
+    $criterion_1 = $_POST['criterion_1'];
+    $criterion_2 = $_POST['criterion_2'];
+    $criterion_3 = $_POST['criterion_3'];
+    $criterion_4 = $_POST['criterion_4'];
+
+    $query = "INSERT INTO reviews (student_id,group_id,criterion_1,criterion_2, criterion_3, criterion_4) VALUES 
+    ('$student_id','$group_id','$criterion_1','$criterion_2','$criterion_3','$criterion_4')";
+
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "Review Added Successfully";
+        header('Location: review-add.php');
+        exit(0);
+    }else
+    {
+        $_SESSION['message'] = "Something went wrong";
+        header('Location: review-add.php');
+        exit(0);
+    }
+}
+
 if(isset($_POST['student_delete']))
 {
     $student_id = $_POST['student_delete'];
@@ -30,12 +57,11 @@ if(isset($_POST['student_delete']))
 if(isset($_POST['student_update']))
 {
     $student_id = $_POST['student_id'];
-    $student_number = $_POST['student_number'];
     $student_firstname = $_POST['student_firstname'];
     $student_lastname = $_POST['student_lastname'];
     $status = $_POST['status'] == true ? '1':'0';
 
-    $query = "UPDATE students SET student_number='$student_number', student_firstname='$student_firstname', student_lastname='$student_lastname', status='$status'
+    $query = "UPDATE students SET student_id='$student_id', student_firstname='$student_firstname', student_lastname='$student_lastname', status='$status'
     WHERE student_id='$student_id' ";
 
     $query_run = mysqli_query($connection, $query);
@@ -56,13 +82,13 @@ if(isset($_POST['student_update']))
 
 if(isset($_POST['student_add']))
 {
-    $student_number = $_POST['student_number'];
+    $student_id = $_POST['student_id'];
     $student_firstname = $_POST['student_firstname'];
     $student_lastname = $_POST['student_lastname'];
     $status = $_POST['status'] == true ? '1':'0';
 
-    $query = "INSERT INTO students (student_number,student_firstname,student_lastname,status) VALUES 
-    ('$student_number','$student_firstname','$student_lastname','$status')";
+    $query = "INSERT INTO students (student_id,student_firstname,student_lastname,status) VALUES 
+    ('$student_id','$student_firstname','$student_lastname','$status')";
 
     $query_run = mysqli_query($connection, $query);
 

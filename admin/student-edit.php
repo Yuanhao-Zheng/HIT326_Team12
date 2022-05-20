@@ -32,11 +32,10 @@ include "includes/header.php";
                             foreach ($student_run as $student) {
                     ?>
                             <form action="code.php" method="POST">
-                                <input type="hidden" name="student_id" value="<?= $student['student_id'] ?>">
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
-                                        <label for="">Student Number</label>
-                                        <input type="text" name="student_number" value="<?= $student['student_number'] ?>" required class="form-control">
+                                        <label for="">Student Id</label>
+                                        <input type="text" name="student_id" value="<?= $student['student_id'] ?>" required class="form-control">
                                     </div>
 
                                     <div class="col-md-12 mb-3">

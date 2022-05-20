@@ -26,8 +26,8 @@ include "includes/header.php";
                         <div class="row">
 
                             <div class="col-md-12 mb-3">
-                                <label for="">Student Number</label>
-                                <input type="text" name="student_number" placeholder="eg. s123456" required class="form-control">
+                                <label for="">Student Id</label>
+                                <input type="text" name="student_id" placeholder="eg. s123456" required class="form-control">
                             </div>
 
                             <div class="col-md-12 mb-3">
