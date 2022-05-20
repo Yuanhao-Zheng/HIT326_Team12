@@ -53,24 +53,24 @@ include "includes/header.php";
                                 </select>
                             </div>
 
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label for="criterion_1">Criterion 1:</label>
-                                <input type="number" id="criterion_1" required name="criterion_1" min="1" max="99">
+                                <input type="number" id="criterion_1" required name="criterion_1" min="1" max="99" class="form-control">
                             </div>
 
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label for="criterion_2">Criterion 2:</label>
-                                <input type="number" id="criterion_2" required name="criterion_2" min="1" max="99">
+                                <input type="number" id="criterion_2" required name="criterion_2" min="1" max="99" class="form-control">
                             </div>
 
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label for="criterion_3">Criterion 3:</label>
-                                <input type="number" id="criterion_3" required name="criterion_3" min="1" max="99">
+                                <input type="number" id="criterion_3" required name="criterion_3" min="1" max="99" class="form-control">
                             </div>
 
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label for="criterion_4">Criterion 4:</label>
-                                <input type="number" id="criterion_4" required name="criterion_4" min="1" max="99">
+                                <input type="number" id="criterion_4" required name="criterion_4" min="1" max="99" class="form-control">
                             </div>
 
                             <div class="col-md-12 mb-3">

@@ -4,6 +4,57 @@ include "authentication.php";
 
 <?php
 
+if(isset($_POST['review_delete']))
+{
+    $review_id = $_POST['review_delete'];
+
+    $query = "DELETE FROM reviews WHERE review_id='$review_id'";
+
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "Review Deleted Successfully";
+        header('Location: review-view.php');
+        exit(0);
+    }else
+    {
+        $_SESSION['message'] = "Something went wrong";
+        header('Location: review-view.php');
+        exit(0);
+    }
+
+
+}
+
+
+if(isset($_POST['review_update']))
+{
+    $review_id = $_POST['review_id'];
+    $criterion_1 = $_POST['criterion_1'];
+    $criterion_2 = $_POST['criterion_2'];
+    $criterion_3 = $_POST['criterion_3'];
+    $criterion_4 = $_POST['criterion_4'];
+    
+
+    $query = "UPDATE reviews SET criterion_1='$criterion_1',criterion_2='$criterion_2',criterion_3='$criterion_3',criterion_4='$criterion_4' 
+    WHERE review_id='$review_id'";
+
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "Review Updated Successfully";
+        header('Location: review-edit.php?review_id='.$review_id);
+        exit(0);
+    }else
+    {
+        $_SESSION['message'] = "Something went wrong";
+        header('Location: review-edit.php?review_id='.$review_id);
+        exit(0);
+    }
+}
+
 if(isset($_POST['review_add']))
 {
     $student_id = $_POST['student_id'];
