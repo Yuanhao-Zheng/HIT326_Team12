@@ -23,7 +23,7 @@ include "includes/header.php";
                 <div class="card-body">
 
                     <div class="table-responsive">
-                        <table class="table table-bordered table-stripe">
+                        <table id="myDataTable" class="table table-bordered table-stripe">
                             <thead>
                                 <tr>
                                     <th>Student Id</th>
