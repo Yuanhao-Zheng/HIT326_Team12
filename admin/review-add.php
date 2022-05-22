@@ -27,30 +27,57 @@ include "includes/header.php";
 
                             <div class="col-md-12 mb-3">
                                 <label for="">Student Id</label>
-                                <select name="student_id" required class="form-select">
-                                    <option value="pick">--Select Student Id-</option>
-                                    <?php
-                                    $fetch_student_id = mysqli_query($connection, "SELECT student_id From students");
-                                    $row = mysqli_num_rows($fetch_student_id);
-                                    while ($row = mysqli_fetch_array($fetch_student_id)) {
-                                        echo "<option value='" . $row['student_id'] . "'>" . $row['student_id'] . "</option>";
-                                    }
-                                    ?>
-                                </select>
+                                <?php
+                                $students = "SELECT * FROM students WHERE status = '1' ";
+                                $student_run = mysqli_query($connection, $students);
+                                if (mysqli_num_rows($student_run) > 0) {
+                                ?>
+                                    <select name="student_id" class="form-select">
+                                        <option value="">--Select Student Id-</option>
+                                        <?php
+                                        foreach ($student_run as $row) {
+                                        ?>
+                                            <option value="<?= $row['student_id'] ?>"><?= $row['student_id'] ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                <?php
+                                } else {
+                                ?>
+                                    <h5>No Student Available</h5>
+                                <?php
+                                }
+                                ?>
                             </div>
 
                             <div class="col-md-12 mb-3">
                                 <label for="">Group Number</label>
-                                <select name="group_id" required class="form-select">
-                                    <option value="pick">--Select Group-</option>
-                                    <?php
-                                    $fetch_group_num = mysqli_query($connection, "SELECT group_id, group_number From groups");
-                                    $row = mysqli_num_rows($fetch_group_num);
-                                    while ($row = mysqli_fetch_array($fetch_group_num)) {
-                                        echo "<option value='" . $row['group_id'] . "'>" . $row['group_number'] . "</option>";
-                                    }
-                                    ?>
-                                </select>
+
+                                <?php
+                                $groups = "SELECT * FROM groups WHERE status = '1' ";
+                                $group_run = mysqli_query($connection, $groups);
+
+                                if (mysqli_num_rows($group_run) > 0) {
+                                ?>
+                                    <select name="group_id" class="form-select">
+                                        <option value="">--Select Unit-</option>
+                                        <?php
+                                        foreach ($group_run as $row) {
+                                        ?>
+                                            <option value="<?= $row['group_id'] ?>"><?= $row['group_number'] ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                <?php
+                                } else {
+                                ?>
+                                    <h5>No Group Available</h5>
+                                <?php
+                                }
+
+                                ?>
                             </div>
 
                             <div class="col-md-3 mb-3">

@@ -24,18 +24,32 @@ include "includes/header.php";
 
                     <form action="code.php" method="POST">
                         <div class="row">
-                        <div class="col-md-12 mb-3">
+                            <div class="col-md-12 mb-3">
                                 <label for="">Unit Code</label>
-                                <select name="unit_id" required class="form-select">
-                                    <option value="pick">--Select Unit-</option>
-                                    <?php 
-                                        $fetch_unitCode = mysqli_query($connection, "SELECT unit_id, unit_code From units");
-                                        $row = mysqli_num_rows($fetch_unitCode);
-                                        while ($row = mysqli_fetch_array($fetch_unitCode)){
-                                        echo "<option value='". $row['unit_id'] ."'>" .$row['unit_code'] ."</option>" ;
+                                <?php
+                                $units = "SELECT * FROM units WHERE status = '1' ";
+                                $unit_run = mysqli_query($connection, $units);
+
+                                if (mysqli_num_rows($unit_run) > 0) {
+                                ?>
+                                    <select name="unit_id" class="form-select">
+                                        <option value="">--Select Unit-</option>
+                                        <?php
+                                        foreach ($unit_run as $row) {
+                                        ?>
+                                            <option value="<?= $row['unit_id'] ?>"><?= $row['unit_code'] ?></option>
+                                        <?php
                                         }
                                         ?>
-                                </select>
+                                    </select>
+                                <?php
+                                } else {
+                                ?>
+                                    <h5>No Unit Available</h5>
+                                <?php
+                                }
+
+                                ?>
                             </div>
 
                             <div class="col-md-12 mb-3">

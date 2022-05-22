@@ -26,16 +26,30 @@ include "includes/header.php";
                         <div class="row">
                         <div class="col-md-12 mb-3">
                                 <label for="">Assignment Title</label>
-                                <select name="assignment_id" required class="form-select">
-                                    <option value="pick">--Select Assignment-</option>
-                                    <?php 
-                                        $fetch_assign_title = mysqli_query($connection, "SELECT assignment_id, assignment_title From assignments");
-                                        $row = mysqli_num_rows($fetch_assign_title);
-                                        while ($row = mysqli_fetch_array($fetch_assign_title)){
-                                        echo "<option value='". $row['assignment_id'] ."'>" .$row['assignment_title'] ."</option>" ;
+
+                                <?php
+                                $assignments = "SELECT * FROM assignments WHERE status = '1' ";
+                                $assignment_run = mysqli_query($connection, $assignments);
+
+                                if (mysqli_num_rows($assignment_run) > 0) {
+                                ?>
+                                    <select name="assignment_id" class="form-select">
+                                        <option value="">--Select Assignments--</option>
+                                        <?php
+                                        foreach ($assignment_run as $row) {
+                                        ?>
+                                            <option value="<?= $row['assignment_id'] ?>"><?= $row['assignment_title'] ?></option>
+                                        <?php
                                         }
                                         ?>
-                                </select>
+                                    </select>
+                                <?php
+                                } else {
+                                ?>
+                                    <h5>No Assignment Available</h5>
+                                <?php
+                                }
+                                ?> 
                             </div>
 
                             <div class="col-md-12 mb-3">
