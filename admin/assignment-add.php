@@ -65,6 +65,7 @@ include "includes/header.php";
                             <div class="col-md-12 mb-3">
                                 <label for="">Status</label>
                                 <input type="checkbox" name="status" width="70px" height="70px">
+                                (*Checked = Visible | Unchecked = Hidden)
                             </div>
 
                             <div class="col-md-12 mb-3">
