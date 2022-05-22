@@ -115,7 +115,9 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-            Start Bootstrap
+            <?php if (isset($_SESSION['auth_user'])) : ?>
+            <?= $_SESSION['auth_user']['user_name']; ?>
+            <?php endif; ?>
         </div>
     </nav>
 </div>
