@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2022 at 06:02 AM
+-- Generation Time: May 23, 2022 at 02:51 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -45,8 +45,9 @@ INSERT INTO `assignments` (`assignment_id`, `unit_id`, `assignment_title`, `navb
 (7, 2, 'Assignment 1', 0, 0, '2022-05-18 13:56:15'),
 (12, 2, 'Assignment 1', 0, 0, '2022-05-18 14:32:06'),
 (13, 6, 'Assignment 3', 1, 0, '2022-05-18 14:33:35'),
-(16, 6, 'Assignment 1', 1, 0, '2022-05-18 14:35:41'),
-(17, 6, 'Assignment 374', 1, 1, '2022-05-18 14:37:07');
+(16, 6, 'Assignment 123', 1, 1, '2022-05-18 14:35:41'),
+(17, 6, 'Assignment 374', 1, 1, '2022-05-18 14:37:07'),
+(30, 2, 'Assignment 12123', 1, 1, '2022-05-22 06:07:54');
 
 -- --------------------------------------------------------
 
@@ -70,7 +71,9 @@ CREATE TABLE `groups` (
 INSERT INTO `groups` (`group_id`, `assignment_id`, `group_number`, `navbar_status`, `status`, `created_at`) VALUES
 (2, 17, 3, 1, 0, '2022-05-19 12:38:35'),
 (3, 12, 2, 0, 1, '2022-05-19 13:30:34'),
-(5, 16, 10, 1, 0, '2022-05-20 00:48:58');
+(5, 16, 10, 1, 1, '2022-05-22 06:22:03'),
+(6, 16, 9, 1, 1, '2022-05-22 06:13:46'),
+(7, 17, 5, 1, 1, '2022-05-22 06:29:13');
 
 -- --------------------------------------------------------
 
@@ -80,20 +83,14 @@ INSERT INTO `groups` (`group_id`, `assignment_id`, `group_number`, `navbar_statu
 
 CREATE TABLE `reviews` (
   `review_id` int(11) NOT NULL,
-  `student_id` varchar(255) NOT NULL,
   `group_id` int(11) NOT NULL,
+  `student_id` varchar(255) NOT NULL,
   `criterion_1` int(2) NOT NULL,
   `criterion_2` int(2) NOT NULL,
   `criterion_3` int(2) NOT NULL,
-  `criterion_4` int(2) NOT NULL
+  `criterion_4` int(2) NOT NULL,
+  `submit_student_id` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `reviews`
---
-
-INSERT INTO `reviews` (`review_id`, `student_id`, `group_id`, `criterion_1`, `criterion_2`, `criterion_3`, `criterion_4`) VALUES
-(13, 's123333', 2, 12, 25, 25, 25);
 
 -- --------------------------------------------------------
 
@@ -138,10 +135,11 @@ CREATE TABLE `units` (
 --
 
 INSERT INTO `units` (`unit_id`, `unit_code`, `unit_name`, `unit_year`, `unit_semester`, `navbar_status`, `status`, `created_at`) VALUES
-(1, 'HIT226', 'Mobile Web Structure', 2012, 1, 1, 1, '2022-05-17 12:25:52'),
+(1, 'HIT226', 'Mobile Web Structure', 2012, 1, 1, 0, '2022-05-17 12:25:52'),
 (2, 'HIT237', 'Building Interactive Website', 2021, 0, 1, 1, '2022-05-17 12:26:37'),
 (3, 'HIT339', 'Distributed Development', 2012, 0, 1, 0, '2022-05-17 12:27:19'),
-(6, 'HIT374', 'Networking', 2013, 0, 0, 1, '2022-05-17 13:21:10');
+(6, 'HIT374', 'Networking', 2013, 0, 0, 1, '2022-05-17 13:21:10'),
+(8, 'HIT353', 'Business Intelligence and Data Mining', 2020, 1, 1, 1, '2022-05-22 11:40:50');
 
 -- --------------------------------------------------------
 
@@ -196,7 +194,8 @@ ALTER TABLE `groups`
 ALTER TABLE `reviews`
   ADD PRIMARY KEY (`review_id`),
   ADD KEY `group_id` (`group_id`),
-  ADD KEY `student_id` (`student_id`);
+  ADD KEY `student_id` (`student_id`),
+  ADD KEY `submit_student_id` (`submit_student_id`);
 
 --
 -- Indexes for table `students`
@@ -224,25 +223,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `assignments`
 --
 ALTER TABLE `assignments`
-  MODIFY `assignment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `assignment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `reviews`
---
-ALTER TABLE `reviews`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `units`
 --
 ALTER TABLE `units`
-  MODIFY `unit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `unit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -270,7 +263,9 @@ ALTER TABLE `groups`
 -- Constraints for table `reviews`
 --
 ALTER TABLE `reviews`
-  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `reviews_ibfk_3` FOREIGN KEY (`submit_student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
