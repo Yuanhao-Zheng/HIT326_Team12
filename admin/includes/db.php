@@ -17,6 +17,6 @@ $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 // to verify the connection, please use the code below
 // if($connection){
 //     echo "We are connected";
-// }  
+// }
 
 ?>

@@ -36,7 +36,7 @@
                     foreach ($navbarUnit_run as $navItems) {
                 ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="unit.php?title=<?= $navItems['unit_name'] ?>"><?= $navItems['unit_code']; ?></a>
+                            <a class="nav-link" href="unit.php?title=<?= $navItems['unit_id'] ?>"><?= $navItems['unit_code']; ?></a>
                         </li>
                 <?php
                     }
