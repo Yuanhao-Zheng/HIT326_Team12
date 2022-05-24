@@ -100,6 +100,11 @@ include "includes/header.php";
                                 <input type="number" id="criterion_4" required name="criterion_4" min="1" max="99" class="form-control">
                             </div>
 
+                            <div class="col-md-3 mb-3">
+                                <label for="submit_student_id">Submit Student Id</label>
+                                <input type="text" id="submit_student_id" required name="submit_student_id" class="form-control">
+                            </div>
+
                             <div class="col-md-12 mb-3">
                                 <button type="submit" name="review_add" class="btn btn-primary">Save Review</button>
                             </div>

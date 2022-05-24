@@ -77,6 +77,11 @@ include "includes/header.php";
                                         </div>
 
                                         <div class="col-md-3 mb-3">
+                                            <label for="submit_student_id">Submit Student Id</label>
+                                            <input type="text" id="submit_student_id" name="submit_student_id" value="<?= $review['submit_student_id'] ?>" class="form-control">
+                                        </div>
+
+                                        <div class="col-md-3 mb-3">
                                             <button type="submit" name="review_update" class="btn btn-primary">Update Review</button>
                                         </div>
                                     </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2022 at 02:51 PM
+-- Generation Time: May 24, 2022 at 12:45 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -91,6 +91,13 @@ CREATE TABLE `reviews` (
   `criterion_4` int(2) NOT NULL,
   `submit_student_id` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`review_id`, `group_id`, `student_id`, `criterion_1`, `criterion_2`, `criterion_3`, `criterion_4`, `submit_student_id`) VALUES
+(1, 3, 's123333', 12, 12, 12, 12, 's123333');
 
 -- --------------------------------------------------------
 
@@ -230,6 +237,12 @@ ALTER TABLE `assignments`
 --
 ALTER TABLE `groups`
   MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `units`
