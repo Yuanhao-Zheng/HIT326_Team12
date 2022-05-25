@@ -33,29 +33,56 @@ include('includes/navbar.php');
                         </div>
                         <?php
 
-                        $assignment = "SELECT assignment_id, assignment_title FROM assignments WHERE unit_id='$unit_id' ";
+                        $assignment = "SELECT * FROM assignments WHERE unit_id='$unit_id' ";
                         $assignment_run = mysqli_query($connection, $assignment);
 
                         if (mysqli_num_rows($assignment_run) > 0) {
                             $assignment_row = mysqli_fetch_array($assignment_run);
                             $assignment_id = $assignment_row['assignment_id'];
+
                             foreach ($assignment_run as $assignment_item) {
                         ?>
-                                <a href="unit.php?title<?php $assignment_item['assignment_id'] ?>" class="text-decoration-none">
+                                <div>
                                     <div class="card card-body shadow-sm mb-4">
                                         <h5><?php echo $assignment_item['assignment_title']; ?></h5>
-                                        <div>group</div>
+                                        <?php
+                                        $group = "SELECT * FROM groups WHERE assignment_id='{$assignment_item['assignment_id']}' ";
+                                        $group_run = mysqli_query($connection, $group);
 
-                                        
+                                        if (mysqli_num_rows($group_run) > 0) {
+                                            // $group_row = mysqli_fetch_array($group_run);
+                                            // $group_id = $group_row['group_id'];
+                                            // echo $group_id;
+
+                                            foreach ($group_run as $group_item) {
+                                        ?>
+
+                                                <div class="col-md-3">
+                                                    <a href="group.php?title<?php $group_item['group_id']; ?>" class="list-group-item list-group-item-action">
+                                                        Group <?php echo $group_item['group_number']; ?></a>
+                                                </div>
+
+                                            <?php
+
+                                            }
+                                        } else {
+                                            ?>
+
+                                            <div>
+                                                <div class="card card-body">
+                                                    <h5>No Group Available</h5>
+                                                </div>
+                                            </div>
+
+                                        <?php
+                                        }
+
+                                        ?>
                                     </div>
-                                </a>
-
-
+                                </div>
                             <?php
                             }
-                        }
-                        else 
-                        {
+                        } else {
                             ?>
 
 
