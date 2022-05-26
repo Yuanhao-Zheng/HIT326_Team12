@@ -58,7 +58,7 @@ include('includes/navbar.php');
                                         ?>
 
                                                 <div class="col-md-3">
-                                                    <a href="group.php?title<?php $group_item['group_id']; ?>" class="list-group-item list-group-item-action">
+                                                    <a href="group.php?title=<?= $group_item['group_id'] ?>" class="list-group-item list-group-item-action">
                                                         Group <?php echo $group_item['group_number']; ?></a>
                                                 </div>
 

@@ -65,7 +65,7 @@ include "includes/header.php";
                                         <?php
                                         foreach ($group_run as $row) {
                                         ?>
-                                            <option value="<?= $row['group_id'] ?>"><?= $row['group_number'] ?></option>
+                                            <option value="<?= $row['group_number'] ?>"><?= $row['group_number'] ?></option>
                                         <?php
                                         }
                                         ?>
