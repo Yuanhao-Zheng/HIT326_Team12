@@ -37,7 +37,7 @@ if(isset($_POST['review_update']))
     $criterion_4 = $_POST['criterion_4'];
     
 
-    $query = "UPDATE reviews SET criterion_1='$criterion_1',criterion_2='$criterion_2',criterion_3='$criterion_3',criterion_4='$criterion_4', submit_student_id='$submit_student_id' 
+    $query = "UPDATE reviews SET criterion_1='$criterion_1',criterion_2='$criterion_2',criterion_3='$criterion_3',criterion_4='$criterion_4', submit_id='$submit_id' 
     WHERE review_id='$review_id'";
 
     $query_run = mysqli_query($connection, $query);
@@ -63,10 +63,10 @@ if(isset($_POST['review_add']))
     $criterion_2 = $_POST['criterion_2'];
     $criterion_3 = $_POST['criterion_3'];
     $criterion_4 = $_POST['criterion_4'];
-    $submit_student_id = $_POST['submit_student_id'];
+    $submit_id = $_POST['submit_id'];
 
-    $query = "INSERT INTO reviews (student_id,group_id,criterion_1,criterion_2, criterion_3, criterion_4, submit_student_id) VALUES 
-    ('$student_id','$group_id','$criterion_1','$criterion_2','$criterion_3','$criterion_4', '$submit_student_id')";
+    $query = "INSERT INTO reviews (student_id,group_id,criterion_1,criterion_2, criterion_3, criterion_4, submit_id) VALUES 
+    ('$student_id','$group_id','$criterion_1','$criterion_2','$criterion_3','$criterion_4', '$submit_id')";
 
     $query_run = mysqli_query($connection, $query);
 

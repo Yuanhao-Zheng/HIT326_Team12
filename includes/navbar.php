@@ -20,15 +20,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <?php
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <?php
                 $navbarUnit = "SELECT * FROM units WHERE navbar_status='1' ";
                 $navbarUnit_run = mysqli_query($connection, $navbarUnit);
 
@@ -43,10 +36,12 @@
                 }
 
                 ?>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
+                </ul>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                 <?php if (isset($_SESSION['auth_user'])) : ?>
                     <!-- <li class="nav-item dropdown">
@@ -62,12 +57,10 @@
                             </li>
                         </ul>
                     </li> -->
+
                     <li class="nav-item">
                         <a class="nav-link" href="#"><?= $_SESSION['auth_user']['user_name']; ?>
                         </a>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">My Profile</a>
-                    </li>
                     <li>
                         <form action="allcode.php" method="POST">
                             <button type="submit" name="logout_btn" class="nav-link">Logout</button>
