@@ -47,72 +47,102 @@ include('includes/navbar.php');
 
                                     <?php
                                     // fetching reviews
-                                    $review = "SELECT * 
-                                FROM reviews
-                                WHERE  student_id='{$student_distinct_item['student_id']}' AND group_id='$group_id' ";
+                                    $review = "SELECT * FROM reviews
+                                        WHERE student_id='{$student_distinct_item['student_id']}' AND group_id='$group_id' ";
                                     $review_run = mysqli_query($connection, $review);
 
-                                    if (mysqli_num_rows($review_run) > 0) {
+                                    $criterion_total = "SELECT SUM(criterion_1)+SUM(criterion_2)+SUM(criterion_3)+SUM(criterion_4) as total 
+                                                    FROM reviews WHERE student_id='{$student_distinct_item['student_id']}' AND group_id='$group_id' LIMIT 1 ";
+                                    $criterion_total_run = mysqli_query($connection, $criterion_total);
+
+                                    $top_criterion = "SELECT SUM(criterion_1)+SUM(criterion_2)+SUM(criterion_3)+SUM(criterion_4) as top_criterion 
+                                    FROM reviews WHERE student_id='{$student_distinct_item['student_id']}' AND group_id='$group_id' LIMIT 1 ";
+                                    $top_criterion_run = mysqli_query($connection, $top_criterion);
+
+
+                                    if (mysqli_num_rows($criterion_total_run) > 0) {
+                                        foreach ($criterion_total_run as $criterion_total_item) {
                                     ?>
-                                        <div class="table-responsive">
-                                            <table id="myDataTable" class="table table-bordered table-stripe">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Student</th>
-                                                        <th>Criterion 1</th>
-                                                        <th>Criterion 2</th>
-                                                        <th>Criterion 3</th>
-                                                        <th>Criterion 4</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
-                                                    foreach ($review_run as $review_item) {
-                                                    ?>
 
+                                            <div class="card-body">
+                                                <h5 class="card-title">Student ID: <?php echo $student_distinct_item['student_id'] ?></h5>
+                                                <p class="card-text">PAF Score: <?php echo $criterion_total_item['total'] / (4 * 100); ?></p>
+                                            </div>
+
+
+                                        <?php
+                                        }
+
+                                       
+
+                                        if (mysqli_num_rows($review_run) > 0) {
+                                        ?>
+                                            <div class="table-responsive">
+                                                <table id="myDataTable" class="table table-bordered table-stripe">
+                                                    <thead>
                                                         <tr>
-                                                            <td><?php echo $review_item['student_id'] ?></td>
-                                                            <td><?php echo $review_item['criterion_1'] ?></td>
-                                                            <td><?php echo $review_item['criterion_2'] ?></td>
-                                                            <td><?php echo $review_item['criterion_3'] ?></td>
-                                                            <td><?php echo $review_item['criterion_4'] ?></td>
+                                                            <th>Students ID</th>
+                                                            <th>Criterion 1</th>
+                                                            <th>Criterion 2</th>
+                                                            <th>Criterion 3</th>
+                                                            <th>Criterion 4</th>
+                                                            <th>Student Responses</th>
                                                         </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        <?php
+                                                        foreach ($review_run as $review_item) {
+                                                        ?>
+
+                                                            <tr>
+                                                                <td><?php echo $review_item['student_id'] ?></td>
+                                                                <td><?php echo $review_item['criterion_1'] ?></td>
+                                                                <td><?php echo $review_item['criterion_2'] ?></td>
+                                                                <td><?php echo $review_item['criterion_3'] ?></td>
+                                                                <td><?php echo $review_item['criterion_4'] ?></td>
+                                                                <td><?php echo $review_item['submit_student_id'] ?></td>
+                                                            </tr>
+
+
 
                                                     <?php
+
+                                                        }
                                                     }
 
 
                                                     ?>
-                                            </table>
-                                        </div>
-
-
-
-
-                                    <?php
-                                    } else {
-                                    ?>
-                                        <div>
-                                            <div class="card card-body shadow-sm mb-4">
-                                                <h5>No Review Available</h5>
+                                                </table>
                                             </div>
-                                        </div>
-                                <?php
+
+
+
+
+                                        <?php
+                                    } else {
+                                        ?>
+                                            <div>
+                                                <div class="card card-body shadow-sm mb-4">
+                                                    <h5>No Review Available</h5>
+                                                </div>
+                                            </div>
+                                    <?php
                                     }
-                                }
+                                } 
                             } else {
-                                ?>
-                                <div>
-                                    <div class="card card-body shadow-sm mb-4">
-                                        <h5>No Review Available</h5>
+                                    ?>
+                                    <div>
+                                        <div class="card card-body shadow-sm mb-4">
+                                            <h5>No Review Available</h5>
+                                        </div>
                                     </div>
-                                </div>
-                            <?php
+                                <?php
                             }
                         } else {
-                            ?>
-                            </tbody>
-                            </table>
+                                ?>
+                                </tbody>
+                                </table>
                         </div>
             </div>
 
@@ -135,30 +165,18 @@ include('includes/navbar.php');
     <?php
                     }
 
+
+
+
+
+
     ?>
 
-    <div class="table-responsive">
-        <table id="myDataTable" class="table table-bordered table-stripe">
-            <thead>
-                <tr>
-                    <th>PAF Score</th>
-                    <th>Student 1</th>
-                    <th>Student 2</th>
-                    <th>Student 3</th>
-                    <th>Student 4</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>PAF</td>
-                    <td>1.2</td>
-                    <td>1.5</td>
-                    <td>1.2</td>
-                    <td>1.3</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+
+  
+
+
+
 
 
 
