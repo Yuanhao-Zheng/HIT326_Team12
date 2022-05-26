@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2022 at 12:45 PM
+-- Generation Time: May 26, 2022 at 02:58 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -41,13 +41,14 @@ CREATE TABLE `assignments` (
 --
 
 INSERT INTO `assignments` (`assignment_id`, `unit_id`, `assignment_title`, `navbar_status`, `status`, `created_at`) VALUES
-(6, 1, 'Assignment 2', 0, 0, '2022-05-18 13:56:15'),
+(6, 1, 'Assignment 2', 1, 1, '2022-05-18 13:56:15'),
 (7, 2, 'Assignment 1', 0, 0, '2022-05-18 13:56:15'),
 (12, 2, 'Assignment 1', 0, 0, '2022-05-18 14:32:06'),
-(13, 6, 'Assignment 3', 1, 0, '2022-05-18 14:33:35'),
+(13, 6, 'Assignment 3', 1, 1, '2022-05-18 14:33:35'),
 (16, 6, 'Assignment 123', 1, 1, '2022-05-18 14:35:41'),
 (17, 6, 'Assignment 374', 1, 1, '2022-05-18 14:37:07'),
-(30, 2, 'Assignment 12123', 1, 1, '2022-05-22 06:07:54');
+(30, 2, 'Assignment 12123', 1, 1, '2022-05-22 06:07:54'),
+(31, 8, 'Final Report', 1, 1, '2022-05-24 13:47:41');
 
 -- --------------------------------------------------------
 
@@ -73,7 +74,35 @@ INSERT INTO `groups` (`group_id`, `assignment_id`, `group_number`, `navbar_statu
 (3, 12, 2, 0, 1, '2022-05-19 13:30:34'),
 (5, 16, 10, 1, 1, '2022-05-22 06:22:03'),
 (6, 16, 9, 1, 1, '2022-05-22 06:13:46'),
-(7, 17, 5, 1, 1, '2022-05-22 06:29:13');
+(7, 17, 5, 1, 1, '2022-05-22 06:29:13'),
+(8, 13, 1, 1, 1, '2022-05-24 14:58:49'),
+(9, 6, 3, 1, 1, '2022-05-24 23:14:36'),
+(10, 6, 4, 1, 1, '2022-05-24 23:14:54'),
+(11, 17, 10, 1, 1, '2022-05-24 23:22:46'),
+(12, 17, 8, 1, 1, '2022-05-24 23:23:03'),
+(13, 16, 2, 1, 1, '2022-05-24 23:25:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `joins`
+--
+
+CREATE TABLE `joins` (
+  `join_id` int(11) NOT NULL,
+  `student_id` varchar(255) NOT NULL,
+  `group_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `joins`
+--
+
+INSERT INTO `joins` (`join_id`, `student_id`, `group_id`) VALUES
+(1, 's123333', 3),
+(2, 's123456', 3),
+(3, 's312005', 3),
+(4, 's322698', 3);
 
 -- --------------------------------------------------------
 
@@ -83,21 +112,35 @@ INSERT INTO `groups` (`group_id`, `assignment_id`, `group_number`, `navbar_statu
 
 CREATE TABLE `reviews` (
   `review_id` int(11) NOT NULL,
-  `group_id` int(11) NOT NULL,
-  `student_id` varchar(255) NOT NULL,
+  `join_id` int(11) NOT NULL,
   `criterion_1` int(2) NOT NULL,
   `criterion_2` int(2) NOT NULL,
   `criterion_3` int(2) NOT NULL,
   `criterion_4` int(2) NOT NULL,
-  `submit_student_id` varchar(255) NOT NULL
+  `submit_id` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `reviews`
 --
 
-INSERT INTO `reviews` (`review_id`, `group_id`, `student_id`, `criterion_1`, `criterion_2`, `criterion_3`, `criterion_4`, `submit_student_id`) VALUES
-(1, 3, 's123333', 12, 12, 12, 12, 's123333');
+INSERT INTO `reviews` (`review_id`, `join_id`, `criterion_1`, `criterion_2`, `criterion_3`, `criterion_4`, `submit_id`) VALUES
+(1, 1, 35, 35, 35, 35, 's123333'),
+(2, 1, 35, 35, 35, 35, 's123456'),
+(3, 1, 25, 25, 25, 25, 's312005'),
+(4, 1, 25, 25, 25, 25, 's322698'),
+(5, 2, 35, 35, 35, 35, 's123333'),
+(6, 2, 35, 35, 35, 35, 's123456'),
+(7, 2, 25, 25, 25, 25, 's312005'),
+(8, 2, 25, 25, 25, 25, 's322698'),
+(9, 3, 15, 15, 15, 15, 's123333'),
+(10, 3, 15, 15, 15, 15, 's123456'),
+(11, 3, 25, 25, 25, 25, 's312005'),
+(12, 3, 25, 25, 25, 25, 's322698'),
+(13, 4, 15, 15, 15, 15, 's123333'),
+(14, 4, 15, 15, 15, 15, 's123456'),
+(15, 4, 25, 25, 25, 25, 's312005'),
+(16, 4, 25, 25, 25, 25, 's322698');
 
 -- --------------------------------------------------------
 
@@ -118,7 +161,10 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`student_id`, `student_firstname`, `student_lastname`, `status`, `created_at`) VALUES
-('s123333', 'Eric1234', '1234', 1, '2022-05-20 01:27:04');
+('s123333', 'Eric1234', '1234', 1, '2022-05-20 01:27:04'),
+('s123456', 'Eric ', 'Eric', 1, '2022-05-25 01:01:45'),
+('s312005', 'Michael', 'Abrahams', 1, '2022-05-26 02:21:48'),
+('s322698', 'Eric ', 'heng', 1, '2022-05-26 02:21:28');
 
 -- --------------------------------------------------------
 
@@ -143,9 +189,9 @@ CREATE TABLE `units` (
 
 INSERT INTO `units` (`unit_id`, `unit_code`, `unit_name`, `unit_year`, `unit_semester`, `navbar_status`, `status`, `created_at`) VALUES
 (1, 'HIT226', 'Mobile Web Structure', 2012, 1, 1, 0, '2022-05-17 12:25:52'),
-(2, 'HIT237', 'Building Interactive Website', 2021, 0, 1, 1, '2022-05-17 12:26:37'),
+(2, 'HIT237', 'Building Interactive Website', 2021, 0, 1, 0, '2022-05-17 12:26:37'),
 (3, 'HIT339', 'Distributed Development', 2012, 0, 1, 0, '2022-05-17 12:27:19'),
-(6, 'HIT374', 'Networking', 2013, 0, 0, 1, '2022-05-17 13:21:10'),
+(6, 'HIT374', 'Networking', 2013, 0, 1, 1, '2022-05-17 13:21:10'),
 (8, 'HIT353', 'Business Intelligence and Data Mining', 2020, 1, 1, 1, '2022-05-22 11:40:50');
 
 -- --------------------------------------------------------
@@ -196,13 +242,19 @@ ALTER TABLE `groups`
   ADD KEY `assignment_id` (`assignment_id`);
 
 --
+-- Indexes for table `joins`
+--
+ALTER TABLE `joins`
+  ADD PRIMARY KEY (`join_id`),
+  ADD KEY `student_id` (`student_id`),
+  ADD KEY `group_id` (`group_id`);
+
+--
 -- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
   ADD PRIMARY KEY (`review_id`),
-  ADD KEY `group_id` (`group_id`),
-  ADD KEY `student_id` (`student_id`),
-  ADD KEY `submit_student_id` (`submit_student_id`);
+  ADD KEY `join_id` (`join_id`);
 
 --
 -- Indexes for table `students`
@@ -230,19 +282,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `assignments`
 --
 ALTER TABLE `assignments`
-  MODIFY `assignment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `assignment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `joins`
+--
+ALTER TABLE `joins`
+  MODIFY `join_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `units`
@@ -273,12 +331,17 @@ ALTER TABLE `groups`
   ADD CONSTRAINT `groups_ibfk_1` FOREIGN KEY (`assignment_id`) REFERENCES `assignments` (`assignment_id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `joins`
+--
+ALTER TABLE `joins`
+  ADD CONSTRAINT `joins_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `joins_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `reviews`
 --
 ALTER TABLE `reviews`
-  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `reviews_ibfk_3` FOREIGN KEY (`submit_student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`join_id`) REFERENCES `joins` (`join_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

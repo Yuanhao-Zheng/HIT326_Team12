@@ -34,7 +34,7 @@ include('includes/navbar.php');
                         <div class="card card-body shadow-sm mb-4">
 
                             <?php
-                            $student_distinct = "SELECT distinct student_id from reviews";
+                            $student_distinct = "SELECT student_id from joins WHERE group_id='$group_id' ";
                             $student_distinct_runs = mysqli_query($connection, $student_distinct);
 
                             if (mysqli_num_rows($student_distinct_runs) > 0) {
@@ -42,38 +42,41 @@ include('includes/navbar.php');
                             ?>
 
 
-
-
-
                                     <?php
                                     // fetching reviews
-                                    $review = "SELECT * FROM reviews
-                                        WHERE student_id='{$student_distinct_item['student_id']}' AND group_id='$group_id' ";
+                                    $review = "SELECT * FROM reviews, joins
+                                        WHERE joins.student_id='{$student_distinct_item['student_id']}' AND joins.group_id='$group_id' AND reviews.join_id=joins.join_id ";
                                     $review_run = mysqli_query($connection, $review);
 
-                                    $criterion_total = "SELECT SUM(criterion_1)+SUM(criterion_2)+SUM(criterion_3)+SUM(criterion_4) as total 
-                                                    FROM reviews WHERE student_id='{$student_distinct_item['student_id']}' AND group_id='$group_id' LIMIT 1 ";
+                                    $criterion_total = "SELECT SUM(reviews.criterion_1)+SUM(reviews.criterion_2)+SUM(reviews.criterion_3)+SUM(reviews.criterion_4) as total 
+                                                    FROM reviews, joins WHERE joins.student_id='{$student_distinct_item['student_id']}' AND joins.group_id='$group_id' AND reviews.join_id=joins.join_id LIMIT 1 ";
                                     $criterion_total_run = mysqli_query($connection, $criterion_total);
 
-                                    $top_criterion = "SELECT SUM(criterion_1)+SUM(criterion_2)+SUM(criterion_3)+SUM(criterion_4) as top_criterion 
-                                    FROM reviews WHERE student_id='{$student_distinct_item['student_id']}' AND group_id='$group_id' LIMIT 1 ";
-                                    $top_criterion_run = mysqli_query($connection, $top_criterion);
+                                    $num_of_student = "SELECT joins.student_id,COUNT(DISTINCT(joins.student_id)) 
+                                    as num_of_student FROM joins, reviews 
+                                    WHERE reviews.join_id=joins.join_id AND joins.group_id='$group_id' LIMIT 1 ";
+                                    $num_of_student_run = mysqli_query($connection, $num_of_student);
+
+                                    
+
+                                    
 
 
-                                    if (mysqli_num_rows($criterion_total_run) > 0) {
+                                    if (mysqli_num_rows($review_run) > 0) {
                                         foreach ($criterion_total_run as $criterion_total_item) {
+                                            while ($row = mysqli_fetch_assoc($num_of_student_run)) {
+                                                $num_student = $row['num_of_student']; 
+                                              }
                                     ?>
 
                                             <div class="card-body">
                                                 <h5 class="card-title">Student ID: <?php echo $student_distinct_item['student_id'] ?></h5>
-                                                <p class="card-text">PAF Score: <?php echo $criterion_total_item['total'] / (4 * 100); ?></p>
+                                                <p class="card-text">PAF Score: <?php echo $criterion_total_item['total'] / ($num_student * 100); ?></p>
                                             </div>
 
 
                                         <?php
                                         }
-
-                                       
 
                                         if (mysqli_num_rows($review_run) > 0) {
                                         ?>
@@ -101,7 +104,7 @@ include('includes/navbar.php');
                                                                 <td><?php echo $review_item['criterion_2'] ?></td>
                                                                 <td><?php echo $review_item['criterion_3'] ?></td>
                                                                 <td><?php echo $review_item['criterion_4'] ?></td>
-                                                                <td><?php echo $review_item['submit_student_id'] ?></td>
+                                                                <td><?php echo $review_item['submit_id'] ?></td>
                                                             </tr>
 
 
@@ -129,7 +132,7 @@ include('includes/navbar.php');
                                             </div>
                                     <?php
                                     }
-                                } 
+                                }
                             } else {
                                     ?>
                                     <div>
@@ -145,9 +148,6 @@ include('includes/navbar.php');
                                 </table>
                         </div>
             </div>
-
-
-
 
             <div>
                 <div class="card card-body shadow-sm mb-4">
@@ -173,7 +173,7 @@ include('includes/navbar.php');
     ?>
 
 
-  
+
 
 
 
