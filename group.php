@@ -36,24 +36,24 @@ include('includes/navbar.php');
                             <?php
                             $student_distinct = "SELECT distinct student_id from reviews";
                             $student_distinct_runs = mysqli_query($connection, $student_distinct);
+
+                            if(mysqli_num_rows($student_distinct_runs) > 0){
                             foreach ($student_distinct_runs as $student_distinct_item) {
                             ?>
 
 
 
-                                <h5>Student Id: <?php echo $student_distinct_item['student_id']; ?></h5>
+                                
 
                                 <?php
                                 // fetching reviews
-                                $review = "SELECT * FROM reviews WHERE student_id in (
-                            SELECT student_id FROM reviews 
-                            WHERE student_id='{$student_distinct_item['student_id']}'
-                            GROUP BY student_id 
-                            having count(*) > 1
-                            ORDER BY student_id DESC) ";
+                                $review = "SELECT * FROM reviews WHERE group_id in (
+                                    SELECT group_id FROM reviews 
+                                    WHERE student_id='{$student_distinct_item['student_id']}' AND group_id='$group_id'
+                                    GROUP BY student_id 
+                                    having count(*) > 1
+                                    ) ";
                                 $review_run = mysqli_query($connection, $review);
-
-
 
                                 if (mysqli_num_rows($review_run) > 0) {
                                 ?>
@@ -61,7 +61,6 @@ include('includes/navbar.php');
                                         <table id="myDataTable" class="table table-bordered table-stripe">
                                             <thead>
                                                 <tr>
-
                                                     <th>Student</th>
                                                     <th>Criterion 1</th>
                                                     <th>Criterion 2</th>
@@ -102,22 +101,26 @@ include('includes/navbar.php');
                                     </div>
                             <?php
                                 }
+                            }} else {
+                                ?>
+                                    <div>
+                                        <div class="card card-body shadow-sm mb-4">
+                                            <h5>No Review Available</h5>
+                                        </div>
+                                    </div>
+                            <?php
                             }
                         } else {
                             ?>
                             </tbody>
-
-
                             </table>
                         </div>
-
-
             </div>
 
 
             <div>
                 <div class="card card-body shadow-sm mb-4">
-                    <h5>No Student Available</h5>
+                    <h5>No Such Group Available</h5>
                 </div>
             </div>
 
