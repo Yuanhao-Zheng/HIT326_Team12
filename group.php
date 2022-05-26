@@ -31,90 +31,107 @@ include('includes/navbar.php');
                         <div>
                             <h1>Group <?php echo $group_item['group_number']; ?></h1>
                         </div>
+                        <div class="card card-body shadow-sm mb-4">
 
-                        <?php
-                        // fetching reviews
-                        $review = "SELECT * FROM reviews WHERE group_id='$group_id' ";
-                        $review_run = mysqli_query($connection, $review);
-
-                        if (mysqli_num_rows($review_run) > 0) {
-                            $review_row = mysqli_fetch_array($review_run);
-                            $review_id = $review_row['review_id'];
-                        ?>
-                            <div class="table-responsive">
-                                <table id="myDataTable" class="table table-bordered table-stripe">
-                                    <thead>
-                                        <tr>
-
-                                            <th>Student</th>
-                                            <th>Criterion 1</th>
-                                            <th>Criterion 2</th>
-                                            <th>Criterion 3</th>
-                                            <th>Criterion 4</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        foreach ($review_run as $review_item) {
-                                        ?>
-                                            <?php
-                                            // $student_distinct = "SELECT distinct student_id from reviews";
-                                            // $student_distinct_runs = mysqli_query($connection, $student_distinct);
-                                            // foreach ($student_distinct_runs as $student_distinct_item) {
-                                            ?>
-                                            <tr>
-                                                <td><?php echo $review_item['student_id'] ?></td>
-                                                <td><?php echo $review_item['criterion_1'] ?></td>
-                                                <td><?php echo $review_item['criterion_2'] ?></td>
-                                                <td><?php echo $review_item['criterion_3'] ?></td>
-                                                <td><?php echo $review_item['criterion_4'] ?></td>
-                                            </tr>
-
-                                        <?php
-                                        }
+                            <?php
+                            $student_distinct = "SELECT distinct student_id from reviews";
+                            $student_distinct_runs = mysqli_query($connection, $student_distinct);
+                            foreach ($student_distinct_runs as $student_distinct_item) {
+                            ?>
 
 
-                                        ?>
-                                </table>
-                            </div>
-            </div>
-        </div>
-    <?php
+
+                                <h5>Student Id: <?php echo $student_distinct_item['student_id']; ?></h5>
+
+                                <?php
+                                // fetching reviews
+                                $review = "SELECT * FROM reviews WHERE student_id in (
+                            SELECT student_id FROM reviews 
+                            WHERE student_id='{$student_distinct_item['student_id']}'
+                            GROUP BY student_id 
+                            having count(*) > 1
+                            ORDER BY student_id DESC) ";
+                                $review_run = mysqli_query($connection, $review);
+
+
+
+                                if (mysqli_num_rows($review_run) > 0) {
+                                ?>
+                                    <div class="table-responsive">
+                                        <table id="myDataTable" class="table table-bordered table-stripe">
+                                            <thead>
+                                                <tr>
+
+                                                    <th>Student</th>
+                                                    <th>Criterion 1</th>
+                                                    <th>Criterion 2</th>
+                                                    <th>Criterion 3</th>
+                                                    <th>Criterion 4</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                foreach ($review_run as $review_item) {
+                                                ?>
+
+                                                    <tr>
+                                                        <td><?php echo $review_item['student_id'] ?></td>
+                                                        <td><?php echo $review_item['criterion_1'] ?></td>
+                                                        <td><?php echo $review_item['criterion_2'] ?></td>
+                                                        <td><?php echo $review_item['criterion_3'] ?></td>
+                                                        <td><?php echo $review_item['criterion_4'] ?></td>
+                                                    </tr>
+
+                                                <?php
+                                                }
+
+
+                                                ?>
+                                        </table>
+                                    </div>
+
+
+
+                                <?php
+                                } else {
+                                ?>
+                                    <div>
+                                        <div class="card card-body shadow-sm mb-4">
+                                            <h5>No Review Available</h5>
+                                        </div>
+                                    </div>
+                            <?php
+                                }
+                            }
                         } else {
-    ?>
-        <div class="card card-body shadow-sm mb-4">
-            <h5>No Group Available</h5>
-        </div>
-    <?php
+                            ?>
+                            </tbody>
+
+
+                            </table>
+                        </div>
+
+
+            </div>
+
+
+            <div>
+                <div class="card card-body shadow-sm mb-4">
+                    <h5>No Student Available</h5>
+                </div>
+            </div>
+
+
+        <?php
                         }
                     } else {
-    ?>
-    </tbody>
+        ?>
+        <h4>No URL Found</h4>
 
-
-    </table>
-    </div>
-
-
-</div>
-
-
-<div>
-    <div class="card card-body shadow-sm mb-4">
-        <h5>No Group Available</h5>
-    </div>
-</div>
-
-<?php
+    <?php
                     }
-                } else {
-?>
-<h4>No URL Found</h4>
 
-<?php
-                }
-
-?>
+    ?>
 
 
 
@@ -122,6 +139,6 @@ include('includes/navbar.php');
 
 
 
-<?php
-include('includes/footer.php');
-?>
+    <?php
+    include('includes/footer.php');
+    ?>
