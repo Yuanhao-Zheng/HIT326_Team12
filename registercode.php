@@ -4,11 +4,21 @@ include('admin/includes/db.php');
 
 if(isset($_POST['register_btn']))
 {
-    $user_firstname = mysqli_real_escape_string($connection, $_POST['user_firstname']);
-    $user_lastname = mysqli_real_escape_string($connection, $_POST['user_lastname']);
-    $user_email = mysqli_real_escape_string($connection, $_POST['user_email']);
-    $user_password = mysqli_real_escape_string($connection, $_POST['user_password']);
-    $confirm_password = mysqli_real_escape_string($connection, $_POST['cpassword']);
+    $user_firstname = $_POST['user_firstname'];
+    $user_lastname = $_POST['user_lastname'];
+    $user_email = $_POST['user_email'];
+    $user_password = $_POST['user_password'];
+    $confirm_password = $_POST['cpassword'];
+
+    if(!empty($user_firstname) && !empty($user_lastname) && !empty($user_email) 
+    && !empty($user_password) && !empty($confirm_password)){
+
+
+    $user_firstname = mysqli_real_escape_string($connection, $user_firstname);
+    $user_lastname = mysqli_real_escape_string($connection, $user_lastname);
+    $user_email = mysqli_real_escape_string($connection, $user_email);
+    $user_password = mysqli_real_escape_string($connection, $user_password);
+    $confirm_password = mysqli_real_escape_string($connection, $confirm_password);
 
     if($user_password == $confirm_password){
         
@@ -46,13 +56,14 @@ if(isset($_POST['register_btn']))
         exit(0);
 
     }
-
+    }else {
+        $_SESSION['message'] = "Fields cannot be empty";
+        header("Location: register.php");
+        exit(0);
+    }
 
 }
 else{
     header("Location: register.php");
     exit(0);
 }
-
-
-?>

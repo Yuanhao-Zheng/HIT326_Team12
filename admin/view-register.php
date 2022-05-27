@@ -69,7 +69,7 @@ include "includes/header.php";
                                         <td>
                                             <form action="code.php" method="POST">
 
-                                                <button type="submit" name="user_delete" value="<?= $row['user_id']; ?>" class="btn btn-danger">Delete</button>
+                                                <button onClick="javascript: return confirm('Are you sure you want to delete');" type="submit" name="user_delete" value="<?= $row['user_id']; ?>" class="btn btn-danger">Delete</button>
                                             </form>
                                         </td>
                                     </tr>

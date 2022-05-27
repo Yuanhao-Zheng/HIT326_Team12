@@ -59,7 +59,7 @@ include "includes/header.php";
                                             <td><a href="group-edit.php?group_id=<?= $item['group_id'] ?>" class="btn btn-info">Edit</td>
                                             <td>
                                                 <form action="code.php" method="POST">
-                                                <button href="submit" name="group_delete" value="<?= $item['group_id'] ?>" class="btn btn-danger">Delete</button>
+                                                <button onClick="javascript: return confirm('Are you sure you want to delete');" href="submit" name="group_delete" value="<?= $item['group_id'] ?>" class="btn btn-danger">Delete</button>
                                             </form>
                                                 
                                             </td>

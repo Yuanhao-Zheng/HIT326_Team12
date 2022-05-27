@@ -52,7 +52,7 @@ include "includes/header.php";
                                             <td><a href="student-edit.php?student_id=<?= $item['student_id'] ?>" class="btn btn-info">Edit</td>
                                             <td>
                                                 <form action="code.php" method="POST">
-                                                <button href="submit" name="student_delete" value="<?= $item['student_id'] ?>" class="btn btn-danger">Delete</button>
+                                                <button onClick="javascript: return confirm('Are you sure you want to delete');" href="submit" name="student_delete" value="<?= $item['student_id'] ?>" class="btn btn-danger">Delete</button>
                                             </form>
                                                 
                                             </td>
