@@ -57,10 +57,6 @@ include('includes/navbar.php');
                                     WHERE reviews.join_id=joins.join_id AND joins.group_id='$group_id' LIMIT 1 ";
                                     $num_of_student_run = mysqli_query($connection, $num_of_student);
 
-                                    
-
-                                    
-
 
                                     if (mysqli_num_rows($review_run) > 0) {
                                         foreach ($criterion_total_run as $criterion_total_item) {

@@ -85,6 +85,22 @@
                     </nav>
                 </div>
 
+                <?php
+                            $query = "SELECT * FROM users LIMIT 1";
+                            $query_run = mysqli_query($connection, $query);
+
+
+                            if (mysqli_num_rows($query_run) > 0) {
+                                foreach ($query_run as $row) {
+                            ?>
+
+                <a class="nav-link" href="profile.php?user_id=<?= $row['user_id']; ?>">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-user-lock"></i></div>
+                    Profile
+                </a>
+
+                <?php }} ?>
+
                 <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     Pages

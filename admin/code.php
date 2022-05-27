@@ -57,16 +57,16 @@ if(isset($_POST['review_update']))
 
 if(isset($_POST['review_add']))
 {
-    $student_id = $_POST['student_id'];
-    $group_id = $_POST['group_id'];
+    $join_id = $_POST['join_id'];
+    // $group_id = $_POST['group_id'];
     $criterion_1 = $_POST['criterion_1'];
     $criterion_2 = $_POST['criterion_2'];
     $criterion_3 = $_POST['criterion_3'];
     $criterion_4 = $_POST['criterion_4'];
     $submit_id = $_POST['submit_id'];
 
-    $query = "INSERT INTO reviews (student_id,group_id,criterion_1,criterion_2, criterion_3, criterion_4, submit_id) VALUES 
-    ('$student_id','$group_id','$criterion_1','$criterion_2','$criterion_3','$criterion_4', '$submit_id')";
+    $query = "INSERT INTO reviews (join_id,criterion_1,criterion_2, criterion_3, criterion_4, submit_id) VALUES 
+    ('$join_id','$criterion_1','$criterion_2','$criterion_3','$criterion_4', '$submit_id')";
 
     $query_run = mysqli_query($connection, $query);
 
@@ -464,6 +464,30 @@ if(isset($_POST['update_user']))
     {
         $_SESSION['message'] = "Updated Successfully";
         header('Location: view-register.php');
+        exit(0);
+    }
+
+
+}
+
+if(isset($_POST['update_profile']))
+{
+    $user_id = $_POST['user_id'];
+    $user_firstname = $_POST['user_firstname'];
+    $user_lastname = $_POST['user_lastname'];
+    $user_email = $_POST['user_email'];
+    $user_password = $_POST['user_password'];
+    $user_role = $_POST['user_role'];
+    $status = $_POST['status'] == true ? '1':'0';
+
+    $query = "UPDATE users SET user_firstname='{$user_firstname}', user_lastname='{$user_lastname}', user_email='{$user_email}', user_password='{$user_password}', user_role='{$user_role}', status='{$status}' WHERE user_id='$user_id' ";
+
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "Updated Successfully";
+        header('Location: profile.php?user_id='.$user_id);
         exit(0);
     }
 
