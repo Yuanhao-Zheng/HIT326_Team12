@@ -56,7 +56,7 @@ include "includes/header.php";
 
                                         <div class="col-md-12 mb-3">
                                             <label for="">Password</label>
-                                            <input type="text" name="user_password" value="<?=$user['user_password']; ?>" class="form-control">
+                                            <input autocomplete="off" type="password" class="form-control" name="user_password">
                                         </div>
 
                                         <div class="col-md-12 mb-3">
