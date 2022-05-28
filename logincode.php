@@ -3,21 +3,34 @@ session_start();
 include('admin/includes/db.php');
 
 if (isset($_POST['login_btn'])) {
-    $user_email = mysqli_real_escape_string($connection, $_POST['user_email']);
-    $user_password = mysqli_real_escape_string($connection, $_POST['user_password']);
+    $user_email = $_POST['user_email'];
+    $user_password = $_POST['user_password'];
+} else {
+    $_SESSION['message'] = "You are not allowed to access this file";
+    header("Location: login.php");
+    exit(0);
+}
 
-    $login_query = "SELECT * FROM users WHERE user_email='$user_email' AND user_password='$user_password' LIMIT 1";
+    $user_email = mysqli_real_escape_string($connection, $user_email);
+    $user_password = mysqli_real_escape_string($connection, $user_password);
+
+    $login_query = "SELECT * FROM users WHERE user_email='$user_email' LIMIT 1";
     $login_query_run = mysqli_query($connection, $login_query);
 
-    if (mysqli_num_rows($login_query_run) > 0) {
+    while ($row = mysqli_fetch_array($login_query_run)) {
 
-        foreach ($login_query_run as $data) {
-            $user_id = $data['user_id'];
-            $user_name = $data['user_firstname'] . ' ' . $data['user_lastname'];
-            $user_email = $data['user_email'];
-            $user_role = $data['user_role'];
-        }
-        $_SESSION['auth'] = true;
+        $user_id = $row['user_id'];
+        $user_name = $row['user_firstname'] . ' ' . $row['user_lastname'];
+        $user_email = $row['user_email'];
+        $db_user_password = $row['user_password'];
+        $user_role = $row['user_role'];
+    }
+
+        
+
+        if(password_verify($user_password, $db_user_password)){
+
+            $_SESSION['auth'] = true;
         $_SESSION['auth_role'] = "$user_role"; //1 = admin, 0=user
         $_SESSION['auth_user'] = [
             'user_id' => $user_id,
@@ -39,8 +52,3 @@ if (isset($_POST['login_btn'])) {
         header("Location: login.php");
         exit(0);
     }
-} else {
-    $_SESSION['message'] = "You are not allowed to access this file";
-    header("Location: login.php");
-    exit(0);
-}

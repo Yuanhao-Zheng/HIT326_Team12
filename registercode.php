@@ -20,7 +20,10 @@ if(isset($_POST['register_btn']))
     $user_password = mysqli_real_escape_string($connection, $user_password);
     $confirm_password = mysqli_real_escape_string($connection, $confirm_password);
 
+
     if($user_password == $confirm_password){
+
+        $user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
         
         // check email
         $checkemail = "SELECT user_email FROM users WHERE user_email='$user_email' ";
