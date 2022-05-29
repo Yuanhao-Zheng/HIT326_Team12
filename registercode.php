@@ -4,11 +4,31 @@ include('admin/includes/db.php');
 
 if(isset($_POST['register_btn']))
 {
-    $user_firstname = $_POST['user_firstname'];
-    $user_lastname = $_POST['user_lastname'];
-    $user_email = $_POST['user_email'];
-    $user_password = $_POST['user_password'];
+    $user_firstname = trim($_POST['user_firstname']);
+    $user_lastname = trim($_POST['user_lastname']);
+    $user_email = trim($_POST['user_email']);
+    $user_password = trim($_POST['user_password']);
     $confirm_password = $_POST['cpassword'];
+
+    $error = [
+
+        'user_firstname'=> '',
+        'user_lastname'=> '',
+        'user_email'=> '',
+        'user_password'=> ''
+    ];
+
+    if($user_firstname ==''){
+        $error['user_firstname'] = 'Firstname cannot be empty';
+    }
+
+    if($user_lastname ==''){
+        $error['user_lastname'] = 'Lastname cannot be empty';
+    }
+
+
+
+
 
     if(!empty($user_firstname) && !empty($user_lastname) && !empty($user_email) 
     && !empty($user_password) && !empty($confirm_password)){
