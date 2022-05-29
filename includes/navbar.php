@@ -21,22 +21,27 @@
     <div class="container">
         <a class="navbar-brand" href="#">Navbar</a>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <?php
+            <?php
+
+            if (isset($_SESSION['auth'])) {
+
+
                 $navbarUnit = "SELECT * FROM units WHERE navbar_status='1' ";
                 $navbarUnit_run = mysqli_query($connection, $navbarUnit);
 
                 if (mysqli_num_rows($navbarUnit_run) > 0) {
                     foreach ($navbarUnit_run as $navItems) {
-                ?>
+            ?>
                         <li class="nav-item">
                             <a class="nav-link" href="unit.php?title=<?= $navItems['unit_id'] ?>"><?= $navItems['unit_code']; ?></a>
                         </li>
-                <?php
+            <?php
                     }
                 }
+            } 
 
-                ?>
-                </ul>
+            ?>
+        </ul>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

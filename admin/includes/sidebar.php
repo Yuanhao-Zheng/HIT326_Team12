@@ -62,6 +62,18 @@
                     </nav>
                 </div>
 
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts6" aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-award"></i></i></div>
+                    Joins
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayouts6" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="join-add.php">Add Join</a>
+                        <a class="nav-link" href="join-view.php">View Joins</a>
+                    </nav>
+                </div>
+
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts5" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-award"></i></i></div>
                     Reviews

@@ -26,18 +26,22 @@ include "includes/header.php";
                         <div class="row">
 
                             <div class="col-md-12 mb-3">
-                                <label for="">Student Id</label>
+                                <label for="">Join Id</label>
                                 <?php
-                                $students = "SELECT * FROM students WHERE status = '1' ";
-                                $student_run = mysqli_query($connection, $students);
-                                if (mysqli_num_rows($student_run) > 0) {
+                                $joins = "SELECT * FROM joins,students,groups, units, assignments 
+                                WHERE students.student_id=joins.student_id 
+                                AND groups.group_id=joins.group_id 
+                                AND units.unit_id = assignments.unit_id 
+                                AND groups.assignment_id = assignments.assignment_id ";
+                                $join_run = mysqli_query($connection, $joins);
+                                if (mysqli_num_rows($join_run) > 0) {
                                 ?>
-                                    <select name="student_id" class="form-select">
-                                        <option value="">--Select Student Id-</option>
+                                    <select name="join_id" class="form-select">
+                                        <option value="">--Select Join Id-</option>
                                         <?php
-                                        foreach ($student_run as $row) {
+                                        foreach ($join_run as $row) {
                                         ?>
-                                            <option value="<?= $row['student_id'] ?>"><?= $row['student_id'] ?></option>
+                                            <option value="<?= $row['join_id'] ?>"><?= $row['unit_code'] ?> --- <?= $row['assignment_title'] ?> --- Group <?= $row['group_number'] ?> --- <?= $row['student_id'] ?></option>
                                         <?php
                                         }
                                         ?>
@@ -48,35 +52,6 @@ include "includes/header.php";
                                     <h5>No Student Available</h5>
                                 <?php
                                 }
-                                ?>
-                            </div>
-
-                            <div class="col-md-12 mb-3">
-                                <label for="">Group Number</label>
-
-                                <?php
-                                $groups = "SELECT * FROM groups WHERE status = '1' ";
-                                $group_run = mysqli_query($connection, $groups);
-
-                                if (mysqli_num_rows($group_run) > 0) {
-                                ?>
-                                    <select name="group_id" class="form-select">
-                                        <option value="">--Select Unit-</option>
-                                        <?php
-                                        foreach ($group_run as $row) {
-                                        ?>
-                                            <option value="<?= $row['group_id'] ?>"><?= $row['group_number'] ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
-                                <?php
-                                } else {
-                                ?>
-                                    <h5>No Group Available</h5>
-                                <?php
-                                }
-
                                 ?>
                             </div>
 
@@ -101,8 +76,8 @@ include "includes/header.php";
                             </div>
 
                             <div class="col-md-3 mb-3">
-                                <label for="submit_student_id">Submit Student Id</label>
-                                <input type="text" id="submit_student_id" required name="submit_student_id" class="form-control">
+                                <label for="submit_id">Student Submit Id</label>
+                                <input type="text" id="submit_id" required name="submit_id" class="form-control">
                             </div>
 
                             <div class="col-md-12 mb-3">

@@ -11,6 +11,26 @@ return mysqli_real_escape_string($connection, trim($string));
 
 }
 
+if (isset($_POST['join_add'])) {
+    $student_id = escape($_POST['student_id']);
+    $group_id = escape($_POST['group_id']);
+
+    $query = "INSERT INTO joins (student_id,group_id) VALUES 
+    ('$student_id','$group_id')";
+
+    $query_run = mysqli_query($connection, $query);
+
+    if ($query_run) {
+        $_SESSION['message'] = "Joins Added Successfully";
+        header('Location: join-add.php');
+        exit(0);
+    } else {
+        $_SESSION['message'] = "Something went wrong";
+        header('Location: join-add.php');
+        exit(0);
+    }
+}
+
 if (isset($_POST['review_delete'])) {
     $review_id = escape($_POST['review_delete']);
 
