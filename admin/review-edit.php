@@ -35,23 +35,12 @@ include "includes/header.php";
                                     <div class="row">
 
                                         <div class="col-md-12 mb-3">
-                                            <label for="">Student Id</label>
-                                            <input type="text" name="student_id" value="<?php
-                                                                                        $query = mysqli_query($connection, "SELECT student_id From students WHERE student_id='{$review['student_id']}' ");
+                                            <label for="">Join Id</label>
+                                            <input type="text" name="join_id" value="<?php
+                                                                                        $query = mysqli_query($connection, "SELECT join_id From joins WHERE join_id='{$review['join_id']}' ");
                                                                                         while ($row = mysqli_fetch_array($query)) {
-                                                                                            $student_id = $row['student_id'];
-                                                                                            echo $student_id;
-                                                                                        }
-                                                                                        ?>" disabled required class="form-control">
-                                        </div>
-
-                                        <div class="col-md-12 mb-3">
-                                            <label for="">Group Id</label>
-                                            <input type="text" name="group_id" value="<?php
-                                                                                        $query = mysqli_query($connection, "SELECT group_id From groups WHERE group_id='{$review['group_id']}' ");
-                                                                                        while ($row = mysqli_fetch_array($query)) {
-                                                                                            $group_id = $row['group_id'];
-                                                                                            echo $group_id;
+                                                                                            $join_id = $row['join_id'];
+                                                                                            echo $join_id;
                                                                                         }
                                                                                         ?>" disabled required class="form-control">
                                         </div>
@@ -77,13 +66,14 @@ include "includes/header.php";
                                         </div>
 
                                         <div class="col-md-3 mb-3">
-                                            <label for="submit_student_id">Submit Student Id</label>
-                                            <input type="text" id="submit_student_id" name="submit_student_id" value="<?= $review['submit_student_id'] ?>" class="form-control">
+                                            <label for="">Submit Student Id</label>
+                                            <input type="text" id="submit_id" name="submit_id" value="<?= $review['submit_id'] ?>" class="form-control">
                                         </div>
 
-                                        <div class="col-md-3 mb-3">
+                                        <div class="col-md-12 mb-3">
                                             <button type="submit" name="review_update" class="btn btn-primary">Update Review</button>
                                         </div>
+
                                     </div>
                                 </form>
                             <?php

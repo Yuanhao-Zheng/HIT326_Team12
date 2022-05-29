@@ -16,9 +16,9 @@ include('includes/header.php');
         unset($_SESSION['error']);
     }
     ?>
-    <div class="row mt-4">
+    <div class="row mt-4 justify-content-center">
 
-        <div class="col-md-12">
+        <div class="col-md-6">
             <?php include('message.php'); ?>
             <div class="card">
                 <div class="card-header">

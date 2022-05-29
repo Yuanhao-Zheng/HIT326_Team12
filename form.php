@@ -16,9 +16,9 @@ include('includes/header.php');
         unset($_SESSION['error']);
     }
     ?>
-    <div class="row mt-4">
+    <div class="row mt-4 justify-content-center">
         <form action="formhandle.php" method="POST">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <?php
                 $group_id = $_SESSION['group_id'];
                 $students_query = "SELECT * FROM joins WHERE group_id={$group_id}";

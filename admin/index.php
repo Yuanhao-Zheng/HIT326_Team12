@@ -37,7 +37,7 @@ include "includes/header.php";
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
-            <div class="card bg-warning text-white mb-4">
+            <div class="card bg-warning text-black mb-4">
                 <div class="card-body">Total Assignments
                 <?php 
                         $dash_assignment_query = "SELECT * from assignments";
@@ -54,8 +54,8 @@ include "includes/header.php";
                     ?>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="assignment-view.php">View Details</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    <a class="small text-black stretched-link" href="assignment-view.php">View Details</a>
+                    <div class="small text-black"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@ include "includes/header.php";
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
-            <div class="card bg-danger text-white mb-4">
+            <div class="card bg-light text-black mb-4">
                 <div class="card-body">Total Students
                 <?php 
                         $dash_student_query = "SELECT * from students";
@@ -100,7 +100,31 @@ include "includes/header.php";
                     ?>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="student-view.php">View Details</a>
+                    <a class="small text-black stretched-link" href="student-view.php">View Details</a>
+                    <div class="small text-black"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-danger text-white mb-4">
+                <div class="card-body">Total Joins
+                <?php 
+                        $dash_join_query = "SELECT * from joins";
+                        $dash_join_query_run = mysqli_query($connection, $dash_join_query);
+
+                        if($join_total = mysqli_num_rows($dash_join_query_run))
+                        {
+                            echo '<h4 class="mb-0"> '.$join_total.' </h4>';
+                        }
+                        else{
+                            echo '<h4 class="mb-0">No Data</h4>';
+                        }
+                    
+                    ?>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="join-view.php">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -131,7 +155,7 @@ include "includes/header.php";
         </div>
 
         <div class="col-xl-3 col-md-6">
-            <div class="card bg-info text-white mb-4">
+            <div class="card bg-info text-black mb-4">
                 <div class="card-body">Total Users
                 <?php 
                         $dash_user_query = "SELECT * from users";
@@ -148,8 +172,8 @@ include "includes/header.php";
                     ?>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="view-register.php">View Details</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    <a class="small text-black stretched-link" href="view-register.php">View Details</a>
+                    <div class="small text-black"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
         </div>

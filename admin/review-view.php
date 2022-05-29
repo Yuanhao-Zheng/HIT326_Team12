@@ -27,8 +27,7 @@ include "includes/header.php";
                             <thead>
                                 <tr>
                                     <th>Review Id</th>
-                                    <th>Student Id</th>
-                                    <th>Group Number</th>
+                                    <th>Join Id</th>
                                     <th>Criterion 1</th>
                                     <th>Criterion 2</th>
                                     <th>Criterion 3</th>
@@ -47,14 +46,7 @@ include "includes/header.php";
                                 ?>
                                         <tr>
                                             <td><?= $item['review_id'] ?></td>
-                                            <td><?= $item['student_id'] ?></td>
-                                            <td><?php 
-                                        $query = mysqli_query($connection, "SELECT group_number From groups WHERE group_id='{$item['group_id']}' ");
-                                        while ($row = mysqli_fetch_array($query)){
-                                        $group_number = $row['group_number'] ;
-                                        echo $group_number;
-                                        }
-                                        ?></td> 
+                                            <td><?= $item['join_id'] ?></td>                                     
                                             <td><?= $item['criterion_1'] ?></td>
                                             <td><?= $item['criterion_2'] ?></td>
                                             <td><?= $item['criterion_3'] ?></td>

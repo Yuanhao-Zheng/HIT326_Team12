@@ -11,6 +11,44 @@ return mysqli_real_escape_string($connection, trim($string));
 
 }
 
+if (isset($_POST['join_delete'])) {
+    $join_id = escape($_POST['join_delete']);
+
+    $query = "DELETE FROM joins WHERE join_id='$join_id'";
+
+    $query_run = mysqli_query($connection, $query);
+
+    if ($query_run) {
+        $_SESSION['message'] = "Join Deleted Successfully";
+        header('Location: join-view.php');
+        exit(0);
+    } else {
+        $_SESSION['message'] = "Something went wrong";
+        header('Location: join-view.php');
+        exit(0);
+    }
+}
+
+
+if (isset($_POST['join_update'])) {
+    $student_id = escape($_POST['student_id']);
+    $group_id = escape($_POST['group_id']);
+
+    $query = "UPDATE joins SET student_id='$student_id',group_id='$group_id' WHERE join_id='$join_id'";
+
+    $query_run = mysqli_query($connection, $query);
+
+    if ($query_run) {
+        $_SESSION['message'] = "Join Updated Successfully";
+        header('Location: join-edit.php?join_id=' . $join_id);
+        exit(0);
+    } else {
+        $_SESSION['message'] = "Something went wrong";
+        header('Location: join-edit.php?join_id=' . $join_id);
+        exit(0);
+    }
+}
+
 if (isset($_POST['join_add'])) {
     $student_id = escape($_POST['student_id']);
     $group_id = escape($_POST['group_id']);
@@ -56,7 +94,7 @@ if (isset($_POST['review_update'])) {
     $criterion_2 = escape($_POST['criterion_2']);
     $criterion_3 = escape($_POST['criterion_3']);
     $criterion_4 = escape($_POST['criterion_4']);
-
+    $submit_id = escape($_POST['submit_id']);
 
     $query = "UPDATE reviews SET criterion_1='$criterion_1',criterion_2='$criterion_2',criterion_3='$criterion_3',criterion_4='$criterion_4', submit_id='$submit_id' 
     WHERE review_id='$review_id'";

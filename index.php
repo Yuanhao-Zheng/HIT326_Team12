@@ -9,8 +9,8 @@ include('includes/navbar.php');
 
 <div class="py-5">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+        <div class="row justify-content-center">
+            <div class="col-md-9">
 
                 <?php include('message.php'); ?>
 
