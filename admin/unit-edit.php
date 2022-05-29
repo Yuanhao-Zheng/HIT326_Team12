@@ -36,22 +36,22 @@ include "includes/header.php";
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
                                         <label for="">Unit Code</label>
-                                        <input type="text" name="unit_code" value="<?= $unit['unit_code'] ?>" required class="form-control">
+                                        <input type="text" name="unit_code" value="<?= $unit['unit_code'] ?>" class="form-control">
                                     </div>
 
                                     <div class="col-md-12 mb-3">
                                         <label for="">Unit Name</label>
-                                        <input type="text" name="unit_name" value="<?= $unit['unit_name'] ?>" required class="form-control">
+                                        <input type="text" name="unit_name" value="<?= $unit['unit_name'] ?>" class="form-control">
                                     </div>
 
                                     <div class="col-md-12 mb-3">
                                         <label for="">Unit Year</label>
-                                        <input type="text" name="unit_year" value="<?= $unit['unit_year'] ?>" required class="form-control">
+                                        <input type="text" name="unit_year" value="<?= $unit['unit_year'] ?>" class="form-control">
                                     </div>
 
                                     <div class="col-md-12 mb-3">
                                         <label for="">Unit Semester</label>
-                                        <select name="unit_semester" required class="form-control">
+                                        <select name="unit_semester" class="form-control">
                                             <option value="">--Select Role--</option>
                                             <option value="1" <?= $unit['unit_semester'] == '1' ? 'selected':'' ?>>Semester 1</option>
                                             <option value="0" <?= $unit['unit_semester'] == '0' ? 'selected':'' ?>>Semester 2</option>

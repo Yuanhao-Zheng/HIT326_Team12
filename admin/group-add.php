@@ -28,7 +28,11 @@ include "includes/header.php";
                                 <label for="">Assignment Title</label>
 
                                 <?php
-                                $assignments = "SELECT * FROM assignments WHERE status = '1' ";
+                                $groups = "SELECT * FROM units,assignments 
+                                WHERE units.unit_id = assignments.unit_id AND assignments.status = '1' ";
+
+                                $assignments = "SELECT * FROM units,assignments 
+                                WHERE units.unit_id = assignments.unit_id AND assignments.status = '1' ";
                                 $assignment_run = mysqli_query($connection, $assignments);
 
                                 if (mysqli_num_rows($assignment_run) > 0) {
@@ -38,7 +42,7 @@ include "includes/header.php";
                                         <?php
                                         foreach ($assignment_run as $row) {
                                         ?>
-                                            <option value="<?= $row['assignment_id'] ?>"><?= $row['assignment_title'] ?></option>
+                                            <option value="<?= $row['assignment_id'] ?>"><?= $row['unit_code'] ?> --- <?= $row['assignment_title'] ?></option>
                                         <?php
                                         }
                                         ?>
@@ -67,11 +71,6 @@ include "includes/header.php";
                                     <option value="9">Group 9</option>
                                     <option value="10">Group 10</option>
                                 </select>
-                            </div>
-
-                            <div class="col-md-12 mb-3">
-                                <label for="">Navbar Status</label>
-                                <input type="checkbox" name="navbar_status" width="70px" height="70px">
                             </div>
 
                             <div class="col-md-12 mb-3">

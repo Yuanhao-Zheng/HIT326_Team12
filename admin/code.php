@@ -222,10 +222,9 @@ if (isset($_POST['group_update'])) {
     $group_id = escape($_POST['group_id']);
     // $unit_id = $_POST['unit_id'];
     $group_number = escape($_POST['group_number']);
-    $navbar_status = escape($_POST['navbar_status'] == true ? '1' : '0');
     $status = escape($_POST['status'] == true ? '1' : '0');
 
-    $query = "UPDATE groups SET group_number='$group_number',navbar_status='$navbar_status',status='$status' 
+    $query = "UPDATE groups SET group_number='$group_number',status='$status' 
     WHERE group_id='$group_id'";
 
     $query_run = mysqli_query($connection, $query);
@@ -245,11 +244,10 @@ if (isset($_POST['group_update'])) {
 if (isset($_POST['group_add'])) {
     $assignment_id = escape($_POST['assignment_id']);
     $group_number = escape($_POST['group_number']);
-    $navbar_status = escape($_POST['navbar_status'] == true ? '1' : '0');
     $status = escape($_POST['status'] == true ? '1' : '0');
 
-    $query = "INSERT INTO groups (assignment_id,group_number,navbar_status,status) VALUES 
-    ('$assignment_id','$group_number','$navbar_status','$status')";
+    $query = "INSERT INTO groups (assignment_id,group_number,status) VALUES 
+    ('$assignment_id','$group_number','$status')";
 
     $query_run = mysqli_query($connection, $query);
 
@@ -288,10 +286,9 @@ if (isset($_POST['assignment_update'])) {
     $assignment_id = escape($_POST['assignment_id']);
     // $unit_id = $_POST['unit_id'];
     $assignment_title = escape($_POST['assignment_title']);
-    $navbar_status = escape($_POST['navbar_status'] == true ? '1' : '0');
     $status = escape($_POST['status'] == true ? '1' : '0');
 
-    $query = "UPDATE assignments SET assignment_title='$assignment_title',navbar_status='$navbar_status',status='$status' 
+    $query = "UPDATE assignments SET assignment_title='$assignment_title',status='$status' 
     WHERE assignment_id='$assignment_id'";
 
     $query_run = mysqli_query($connection, $query);
@@ -311,11 +308,10 @@ if (isset($_POST['assignment_update'])) {
 if (isset($_POST['assignment_add'])) {
     $unit_id = escape($_POST['unit_id']);
     $assignment_title = escape($_POST['assignment_title']);
-    $navbar_status = escape($_POST['navbar_status'] == true ? '1' : '0');
     $status = escape($_POST['status'] == true ? '1' : '0');
 
-    $query = "INSERT INTO assignments (unit_id,assignment_title,navbar_status,status) VALUES 
-    ('$unit_id','$assignment_title','$navbar_status','$status')";
+    $query = "INSERT INTO assignments (unit_id,assignment_title,status) VALUES 
+    ('$unit_id','$assignment_title','$status')";
 
     $query_run = mysqli_query($connection, $query);
 

@@ -27,6 +27,7 @@ include "includes/header.php";
                             <thead>
                                 <tr>
                                     <th>Group Id</th>
+                                    <th>Unit Code</th>
                                     <th>Assignment Title</th>
                                     <th>Group Number</th>
                                     <th>Status</th>
@@ -45,6 +46,14 @@ include "includes/header.php";
                                         <tr>
                                             <td><?= $item['group_id'] ?></td>
                                             <!-- <td><?= $item['assignment_id'] ?></td> -->
+                                            <td><?php 
+                                        $query = mysqli_query($connection, "SELECT * FROM units,assignments 
+                                        WHERE units.unit_id = assignments.unit_id AND assignments.assignment_id='{$item['assignment_id']}' ");
+                                        while ($row = mysqli_fetch_array($query)){
+                                        $unit_code = $row['unit_code'] ;
+                                        echo $unit_code;
+                                        }
+                                        ?></td> 
                                             <td><?php 
                                         $query = mysqli_query($connection, "SELECT assignment_title From assignments WHERE assignment_id='{$item['assignment_id']}' ");
                                         while ($row = mysqli_fetch_array($query)){

@@ -27,10 +27,10 @@ include "includes/header.php";
                             <thead>
                                 <tr>
                                     <th>Join Id</th>
-                                    <th>Student Id</th>
-                                    <th>Group</th>
                                     <th>Unit Code</th>
                                     <th>Assignment</th>
+                                    <th>Group</th>
+                                    <th>Student Id</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -45,42 +45,45 @@ include "includes/header.php";
                                 ?>
                                         <tr>
                                             <td><?= $item['join_id'] ?></td>
+                                            <td><?php
+                                                $query = mysqli_query($connection, "SELECT unit_code From units,assignments, groups 
+                                        WHERE units.unit_id = assignments.unit_id 
+                                        AND assignments.assignment_id = groups.assignment_id 
+                                        AND groups.group_id='{$item['group_id']}' ");
+                                                while ($row = mysqli_fetch_array($query)) {
+                                                    $unit_code = $row['unit_code'];
+                                                    echo $unit_code;
+                                                }
+                                                ?></td>
+                                            <td><?php
+                                                $query = mysqli_query($connection, "SELECT assignment_title From units,assignments, groups 
+                                        WHERE units.unit_id = assignments.unit_id 
+                                        AND assignments.assignment_id = groups.assignment_id 
+                                        AND groups.group_id='{$item['group_id']}' ");
+                                                while ($row = mysqli_fetch_array($query)) {
+                                                    $assignment_title = $row['assignment_title'];
+                                                    echo $assignment_title;
+                                                }
+                                                ?></td>
+                                            <td><?php
+                                                $query = mysqli_query($connection, "SELECT group_number From groups WHERE group_id='{$item['group_id']}' ");
+                                                while ($row = mysqli_fetch_array($query)) {
+                                                    $group_number = $row['group_number'];
+                                                    echo $group_number;
+                                                }
+                                                ?></td>
                                             <td><?= $item['student_id'] ?></td>
-                                            <td><?php 
-                                        $query = mysqli_query($connection, "SELECT group_number From groups WHERE group_id='{$item['group_id']}' ");
-                                        while ($row = mysqli_fetch_array($query)){
-                                        $group_number = $row['group_number'] ;
-                                        echo $group_number;
-                                        }
-                                        ?></td> 
-                                            <td><?php 
-                                        $query = mysqli_query($connection, "SELECT unit_code From units,assignments, groups 
-                                        WHERE units.unit_id = assignments.unit_id 
-                                        AND assignments.assignment_id = groups.assignment_id 
-                                        AND groups.group_id='{$item['group_id']}' ");
-                                        while ($row = mysqli_fetch_array($query)){
-                                        $unit_code = $row['unit_code'] ;
-                                        echo $unit_code;
-                                        }
-                                        ?></td> 
-                                        <td><?php 
-                                        $query = mysqli_query($connection, "SELECT assignment_title From units,assignments, groups 
-                                        WHERE units.unit_id = assignments.unit_id 
-                                        AND assignments.assignment_id = groups.assignment_id 
-                                        AND groups.group_id='{$item['group_id']}' ");
-                                        while ($row = mysqli_fetch_array($query)){
-                                        $assignment_title = $row['assignment_title'] ;
-                                        echo $assignment_title;
-                                        }
-                                        ?></td> 
-                                            
-                                            
+
+
+
+
+
                                             <td><a href="join-edit.php?join_id=<?= $item['join_id'] ?>" class="btn btn-info">Edit</td>
                                             <td>
                                                 <form action="code.php" method="POST">
-                                                <button onClick="javascript: return confirm('Are you sure you want to delete');" href="submit" name="join_delete" value="<?= $item['join_id'] ?>" class="btn btn-danger">Delete</button>
-                                            </form>
-                                                
+                                                    <button onClick="javascript: return confirm('Are you sure you want to delete');" href="submit" name="join_delete" value="<?= $item['join_id'] ?>" class="btn btn-danger">Delete</button>
+                                                </form>
+
                                             </td>
                                         </tr>
                                     <?php

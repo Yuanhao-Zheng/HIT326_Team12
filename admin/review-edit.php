@@ -35,6 +35,17 @@ include "includes/header.php";
                                     <div class="row">
 
                                         <div class="col-md-12 mb-3">
+                                            <label for="">Review Id</label>
+                                            <input type="text" name="review_id" value="<?php
+                                                                                        $query = mysqli_query($connection, "SELECT review_id From reviews WHERE review_id='{$review['review_id']}' ");
+                                                                                        while ($row = mysqli_fetch_array($query)) {
+                                                                                            $review_id = $row['review_id'];
+                                                                                            echo $review_id;
+                                                                                        }
+                                                                                        ?>" disabled class="form-control">
+                                        </div>
+
+                                        <div class="col-md-12 mb-3">
                                             <label for="">Join Id</label>
                                             <input type="text" name="join_id" value="<?php
                                                                                         $query = mysqli_query($connection, "SELECT join_id From joins WHERE join_id='{$review['join_id']}' ");
@@ -42,7 +53,65 @@ include "includes/header.php";
                                                                                             $join_id = $row['join_id'];
                                                                                             echo $join_id;
                                                                                         }
-                                                                                        ?>" disabled required class="form-control">
+                                                                                        ?>" disabled class="form-control">
+                                        </div>
+
+                                        <div class="col-md-12 mb-3">
+                                            <label for="">Unit Code </label>
+                                            <input type="text" name="student_id" value="<?php
+                                                                                        $query = mysqli_query($connection, "SELECT * From units,assignments,groups, joins 
+                                                                                        WHERE units.unit_id = assignments.unit_id 
+                                                                                        AND assignments.assignment_id = groups.assignment_id
+                                                                                        AND groups.group_id = joins.group_id
+                                                                                        AND joins.join_id='{$review['join_id']}' ");
+                                                                                        while ($row = mysqli_fetch_array($query)) {
+                                                                                            $unit_code = $row['unit_code'];
+                                                                                            echo $unit_code;
+                                                                                        }
+                                                                                        ?>" disabled class="form-control">
+                                        </div>
+
+                                        <div class="col-md-12 mb-3">
+                                            <label for="">Assignment Title </label>
+                                            <input type="text" name="student_id" value="<?php
+                                                                                        $query = mysqli_query($connection, "SELECT * From units,assignments,groups, joins 
+                                                                                        WHERE units.unit_id = assignments.unit_id 
+                                                                                        AND assignments.assignment_id = groups.assignment_id
+                                                                                        AND groups.group_id = joins.group_id
+                                                                                        AND joins.join_id='{$review['join_id']}' ");
+                                                                                        while ($row = mysqli_fetch_array($query)) {
+                                                                                            $assignment_title = $row['assignment_title'];
+                                                                                            echo $assignment_title;
+                                                                                        }
+                                                                                        ?>" disabled class="form-control">
+                                        </div>
+
+                                        <div class="col-md-12 mb-3">
+                                            <label for="">Group Number </label>
+                                            <input type="text" name="student_id" value="<?php
+                                                                                        $query = mysqli_query($connection, "SELECT * From units,assignments,groups, joins 
+                                                                                        WHERE units.unit_id = assignments.unit_id 
+                                                                                        AND assignments.assignment_id = groups.assignment_id
+                                                                                        AND groups.group_id = joins.group_id
+                                                                                        AND joins.join_id='{$review['join_id']}' ");
+                                                                                        while ($row = mysqli_fetch_array($query)) {
+                                                                                            $group_number = $row['group_number'];
+                                                                                            echo $group_number;
+                                                                                        }
+                                                                                        ?>" disabled class="form-control">
+                                        </div>
+
+                                        <div class="col-md-12 mb-3">
+                                            <label for="">Student Id</label>
+                                            <input type="text" name="student_id" value="<?php
+                                                                                        $query = mysqli_query($connection, "SELECT * From students, joins 
+                                                                                        WHERE students.student_id = students.student_id
+                                                                                        AND joins.join_id='{$review['join_id']}' LIMIT 1");
+                                                                                        while ($row = mysqli_fetch_array($query)) {
+                                                                                            $student_id = $row['student_id'];
+                                                                                            echo $student_id;
+                                                                                        }
+                                                                                        ?>" class="form-control">
                                         </div>
 
                                         <div class="col-md-3 mb-3">

@@ -41,16 +41,12 @@ include "includes/header.php";
                                                 while ($row = mysqli_fetch_array($query)) {
                                                     $unit_code = $row['unit_code']; 
                                                     echo $unit_code;   }                                            
-                                                ?>" disabled required class="form-control">
+                                                ?>" disabled class="form-control">
                                         </div>
 
                                         <div class="col-md-12 mb-3">
                                             <label for="">Assignment Title</label>
-                                            <input type="text" name="assignment_title" value="<?= $assignment['assignment_title'] ?>" required class="form-control">
-                                        </div>
-                                        <div class="col-md-12 mb-3">
-                                            <label for="">Navbar Status</label>
-                                            <input type="checkbox" name="navbar_status" <?= $assignment['navbar_status'] == '1' ? 'checked' : '' ?> width="70px" height="70px">
+                                            <input type="text" name="assignment_title" value="<?= $assignment['assignment_title'] ?>" class="form-control">
                                         </div>
 
                                         <div class="col-md-12 mb-3">

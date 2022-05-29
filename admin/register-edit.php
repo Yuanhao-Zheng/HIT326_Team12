@@ -62,7 +62,7 @@ include "includes/header.php";
 
                                         <div class="col-md-12 mb-3">
                                             <label for="">User Role</label>
-                                            <select name="user_role" required class="form-control">
+                                            <select name="user_role" class="form-control">
                                                 <option value="">--Select Role--</option>
                                                 <option value="1" <?= $user['user_role'] == '1' ? 'selected':'' ?> >Admin</option>
                                                 <option value="0" <?= $user['user_role'] == '0' ? 'selected':'' ?> >user</option>

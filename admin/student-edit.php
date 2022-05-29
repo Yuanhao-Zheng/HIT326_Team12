@@ -35,17 +35,17 @@ include "includes/header.php";
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
                                         <label for="">Student Id</label>
-                                        <input type="text" name="student_id" value="<?= $student['student_id'] ?>" required class="form-control">
+                                        <input type="text" name="student_id" value="<?= $student['student_id'] ?>" class="form-control">
                                     </div>
 
                                     <div class="col-md-12 mb-3">
                                         <label for="">Student First Name</label>
-                                        <input type="text" name="student_firstname" value="<?= $student['student_firstname'] ?>" required class="form-control">
+                                        <input type="text" name="student_firstname" value="<?= $student['student_firstname'] ?>" class="form-control">
                                     </div>
 
                                     <div class="col-md-12 mb-3">
                                         <label for="">Student Last Name</label>
-                                        <input type="text" name="student_lastname" value="<?= $student['student_lastname'] ?>" required class="form-control">
+                                        <input type="text" name="student_lastname" value="<?= $student['student_lastname'] ?>" class="form-control">
                                     </div>
 
                                     <div class="col-md-12 mb-3">

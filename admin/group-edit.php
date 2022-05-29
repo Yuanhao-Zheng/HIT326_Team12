@@ -34,14 +34,30 @@ include "includes/header.php";
                                     <input type="hidden" name="group_id" value="<?= $group['group_id'] ?>">
                                     <div class="row">
 
+                                    <div class="col-md-12 mb-3">
+                                            <label for="">Unit Code</label>
+                                            <input type="text" name="assignment_id" value="<?php
+                                             
+                                             
+                                                $query = mysqli_query($connection, "SELECT * FROM units,assignments 
+                                                WHERE units.unit_id = assignments.unit_id AND assignments.assignment_id='{$group['assignment_id']}' ");
+                                                while ($row = mysqli_fetch_array($query)) {
+                                                    $unit_code = $row['unit_code'];
+                                                    echo $unit_code;  }                                            
+                                                ?>" disabled class="form-control">
+                                        </div>
+
                                         <div class="col-md-12 mb-3">
                                             <label for="">Assignment Title</label>
                                             <input type="text" name="assignment_id" value="<?php
-                                                $query = mysqli_query($connection, "SELECT assignment_title From assignments WHERE assignment_id='{$group['assignment_id']}' ");
+                                             
+                                             
+                                                $query = mysqli_query($connection, "SELECT * FROM units,assignments 
+                                                WHERE units.unit_id = assignments.unit_id AND assignments.assignment_id='{$group['assignment_id']}' ");
                                                 while ($row = mysqli_fetch_array($query)) {
                                                     $assignment_title = $row['assignment_title']; 
-                                                    echo $assignment_title;   }                                            
-                                                ?>" disabled required class="form-control">
+                                                    echo $assignment_title;  }                                            
+                                                ?>" disabled class="form-control">
                                         </div>
 
                                         <div class="col-md-12 mb-3">
@@ -60,11 +76,6 @@ include "includes/header.php";
                                                 <option value="9">Group 9</option>
                                                 <option value="10">Group 10</option>
                                             </select>
-                                        </div>
-
-                                        <div class="col-md-12 mb-3">
-                                            <label for="">Navbar Status</label>
-                                            <input type="checkbox" name="navbar_status" <?= $group['navbar_status'] == '1' ? 'checked' : '' ?> width="70px" height="70px">
                                         </div>
 
                                         <div class="col-md-12 mb-3">
