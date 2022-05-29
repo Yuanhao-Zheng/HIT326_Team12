@@ -62,16 +62,48 @@ include('includes/navbar.php');
                                         foreach ($criterion_total_run as $criterion_total_item) {
                                             while ($row = mysqli_fetch_assoc($num_of_student_run)) {
                                                 $num_student = $row['num_of_student']; 
-                                              }
+                                              
                                     ?>
 
                                             <div class="card-body">
                                                 <h5 class="card-title">Student ID: <?php echo $student_distinct_item['student_id'] ?></h5>
-                                                <p class="card-text">PAF Score: <?php echo $criterion_total_item['total'] / ($num_student * 100); ?></p>
+                                                <p class="card-text">PAF Score: <?php $finalscore = $criterion_total_item['total'] / (4 * 100);
+                                                    echo $finalscore;
+
+                                                    if($finalscore >= 1.5){
+                                                        echo "Alarm! Team failure.";
+                                                    }
+                                                    elseif($finalscore >= 1.15 || $finalscore < 1.5){
+                                                        echo "Super Leader/ Dominator?";
+                                                    }
+                                                    elseif($finalscore >= 1.05 || $finalscore < 1.15){
+                                                        echo "Leader";
+                                                    }
+                                                    elseif($finalscore >= 1.00 || $finalscore < 1.05){
+                                                        echo "Good Teamwork";
+                                                    }
+                                                    elseif($finalscore >= 0.95 || $finalscore < 1.00){
+                                                        echo "Acceptable Teamwork";
+                                                    }
+                                                    elseif($finalscore >= 0.85 || $finalscore < 0.95){
+                                                        echo "Social Loafer";
+                                                    }
+                                                    elseif($finalscore >= 0.75 || $finalscore < 0.85){
+                                                        echo "Super Social Loafer";
+                                                    }
+                                                    else{
+                                                        echo "Alarm! Individual failure!";
+                                                    }
+                                                        
+                                                    
+                                                ?></p>
                                             </div>
 
 
+
+
                                         <?php
+                                        }
                                         }
 
                                         if (mysqli_num_rows($review_run) > 0) {

@@ -101,7 +101,7 @@ include "includes/header.php";
                                 } else {
                                     ?>
                                     <tr>
-                                        <td colspan="6">No Record Found</td>
+                                        <td colspan="7">No Record Found</td>
                                     </tr>
                                 <?php
                                 }

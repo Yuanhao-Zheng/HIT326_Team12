@@ -36,7 +36,7 @@ include "includes/header.php";
 
                                         <div class="col-md-12 mb-3">
                                             <label for="">Join Id</label>
-                                            <input type="text" name="student_id" value="<?php
+                                            <input type="text" name="join_id" value="<?php
                                                                                         $query = mysqli_query($connection, "SELECT * From units,assignments, groups, joins 
                                                                                         WHERE units.unit_id = assignments.unit_id 
                                                                                         AND assignments.assignment_id = groups.assignment_id 
@@ -51,7 +51,7 @@ include "includes/header.php";
 
                                         <div class="col-md-12 mb-3">
                                             <label for="">Unit Code</label>
-                                            <input type="text" name="student_id" value="<?php
+                                            <input type="text" name="unit_code" value="<?php
                                                                                         $query = mysqli_query($connection, "SELECT * From units,assignments, groups, joins 
                                                                                         WHERE units.unit_id = assignments.unit_id 
                                                                                         AND assignments.assignment_id = groups.assignment_id 
@@ -66,7 +66,7 @@ include "includes/header.php";
 
                                         <div class="col-md-12 mb-3">
                                             <label for="">Assignment Title</label>
-                                            <input type="text" name="student_id" value="<?php
+                                            <input type="text" name="assignment_title" value="<?php
                                                                                         $query = mysqli_query($connection, "SELECT * From units,assignments, groups, joins 
                                                                                         WHERE units.unit_id = assignments.unit_id 
                                                                                         AND assignments.assignment_id = groups.assignment_id 
@@ -81,7 +81,7 @@ include "includes/header.php";
 
                                         <div class="col-md-12 mb-3">
                                             <label for="">Group Number</label>
-                                            <input type="text" name="student_id" value="<?php
+                                            <input type="text" name="group_number" value="<?php
                                                                                         $query = mysqli_query($connection, "SELECT * From units,assignments, groups, joins 
                                                                                         WHERE units.unit_id = assignments.unit_id 
                                                                                         AND assignments.assignment_id = groups.assignment_id 

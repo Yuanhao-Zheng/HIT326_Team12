@@ -28,8 +28,6 @@ include "includes/header.php";
                                 <label for="">Assignment Title</label>
 
                                 <?php
-                                $groups = "SELECT * FROM units,assignments 
-                                WHERE units.unit_id = assignments.unit_id AND assignments.status = '1' ";
 
                                 $assignments = "SELECT * FROM units,assignments 
                                 WHERE units.unit_id = assignments.unit_id AND assignments.status = '1' ";
