@@ -8,12 +8,12 @@ include('includes/navbar.php');
 
 <div class="py-5">
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-12">
                 <?php include('message.php'); ?>
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-9 ">
 
                 <?php
                 if (isset($_GET['title'])) {
@@ -114,16 +114,6 @@ include('includes/navbar.php');
 
             </div>
 
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Assignment List</h4>
-                    </div>
-                    <div class="card-body">
-                        Assignment list
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

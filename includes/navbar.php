@@ -19,7 +19,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="../index.php">Peer Assessment</a>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <?php
 
@@ -62,6 +62,13 @@
                             </li>
                         </ul>
                     </li> -->
+
+                    <?php if($_SESSION['auth_role'] == "1") : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.php">Admin
+                        </a>
+                    <li>
+                    <?php endif; ?>
 
                     <li class="nav-item">
                         <a class="nav-link" href="#"><?= $_SESSION['auth_user']['user_name']; ?>
