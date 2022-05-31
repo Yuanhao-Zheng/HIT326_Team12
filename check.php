@@ -49,17 +49,17 @@ include('includes/header.php');
 
                             <div class="col-md-12 mb-3">
                                 <label for="">Assignment Title</label>
-                                <input type="text" name="assignment_title" required class="form-control">
+                                <input type="text" name="assignment_title" required class="form-control" placeholder="eg: Assignment 1">
                             </div>
 
                             <div class="col-md-12 mb-3">
                                 <label for="">Group Number</label>
-                                <input type="text" name="group_number" required class="form-control">
+                                <input type="text" name="group_number" required class="form-control" placeholder="eg: 3">
                             </div>
 
                             <div class="col-md-12 mb-3">
                                 <label for="">Student Number</label>
-                                <input type="text" name="student_number" required class="form-control">
+                                <input type="text" name="student_number" required class="form-control" placeholder="eg: s123456">
                             </div>
 
                             <div class="col-md-12 mb-3">
